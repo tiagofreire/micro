@@ -115,3 +115,15 @@ def potencia_minima(potencia, potencia_minima):
     else:
         return False
 register.filter('potencia_minima', potencia_minima)
+
+def converter_potencia(potencia, tipo_potencia):
+    if tipo_potencia == "VA":
+        potencia_convertida = potencia * 1.0
+    elif tipo_potencia == "KVA":
+        potencia_convertida = (potencia * 1.0)  * 1000
+    elif tipo_potencia == "AH":
+        potencia_convertida = potencia * 100000
+    else:
+        potencia_convertida = potencia
+    return potencia_convertida
+register.filter('converter_potencia', converter_potencia)

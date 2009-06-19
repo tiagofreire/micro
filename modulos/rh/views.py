@@ -32,8 +32,17 @@ def cropar_foto_view(request, id_curriculo = False):
     return render_to_response('rh_crop.html', variaveis)
 
 def editar_foto_view(request, id_curriculo = False):
-    curriculo = Curriculo.objects.get(codigo_cadastro = id_curriculo)
-    formulario = FormCurriculoFoto(instance = curriculo)
+    if id_curriculo:
+        try:
+            curriculo = Curriculo.objects.get(codigo_cadastro = id_curriculo)
+        except Curriculo.DoesNotExist:    
+            try:
+                curriculo = Curriculo.objects.get(codigo_cadastro = "curriculo-cadastro")
+            except Curriculo.DoesNotExist:
+                curriculo = Curriculo()
+                curriculo.codigo_cadastro = "curriculo-cadastro"
+                curriculo.save()    
+        formulario = FormCurriculoFoto(instance = curriculo)
     if request.method == "POST":
         formulario = FormCurriculoFoto(request.POST, request.FILES, instance = curriculo)
         if formulario.is_valid():
