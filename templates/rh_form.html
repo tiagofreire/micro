@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block "extrahead" %}
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/thickbox.css" />
     <script type="text/javascript" src="{{MEDIA_URL}}js/cidade_estados.js" ></script>
     <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-maskedinput.js" ></script>
     <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/oportunidade_formulario.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/thickbox.js" type="text/javascript" ></script>
     <script type="text/javascript">
         window.onload = function() {
 new dgCidadesEstados(document.getElementById('estado'), document.getElementById('cidade'), true);
@@ -15,70 +18,12 @@ new dgCidadesEstados(document.getElementById('estado'), document.getElementById(
         $("#id_dia").mask("99");
         $("#id_mes").mask("99");
         $("#id_ano").mask("9999");
+        $("#id_medio_conclusao").mask("9999");
+        $("#id_graduacao_conclusao").mask("9999");
+        $("#id_pos_graduacao_conclusao").mask("9999");
+        $("#id_cpf").mask("999.999.999-99");
     });
 
-    function enviar_curriculo(){
-            if (validarNome($("#id_nome").val()) == false){
-                $("#erros").html("Preencha o campo nome corretamente."); 
-            }
-            else if (validarEmail($("#id_email").val()) == false){
-                $("#erros").html("Preencha o campo email corretamente.");
-            }
-            else if ($("#id_sexo").val() == "Selecione"){
-                $("#erros").html("Selecione um sexo.");
-            }
-            else if ($("#id_dia").val() == "" || $("#id_dia").val() == "__"){
-                $("#erros").html("Informe o dia do seu nascimento.");
-            } 
-            else if ($("#id_mes").val() == "" || $("#id_dia").val() == "__"){
-                $("#erros").html("Informe o mês do seu nascimento.");
-            }
-            else if ($("#id_ano").val() == "" || $("#id_dia").val() == "____"){
-                $("#erros").html("Informe o ano do seu nascimento.");
-            }     
-            else if ($("#id_ddd_telefone").val() == "" || $("#id_ddd_telefone").val() == "(__)"){
-                $("#erros").html("Informe o DDD do seu telefone.");
-            }
-            else if ($("#id_telefone").val() == "" || $("#id_telefone").val() == "____-____"){
-                $("#erros").html("Informe o seu telefone.");
-            }
-            else if ($("#id_ddd_celular").val() == "" || $("#id_ddd_celular").val() == "(__)"){
-                $("#erros").html("Informe o DDD do seu celular.");
-            }
-            else if ($("#id_celular").val() == "" || $("#id_celular").val() == "____-____"){
-                $("#erros").html("Informe o seu celular.");
-            }    
-            else if ($("#id_endereco").val() == ""){
-                $("#erros").html("Informe seu endereço.");
-            }
-            else if ($("#id_bairro").val() == ""){
-                $("#erros").html("Informe seu bairro.");
-            }
-            else if ($("#id_estado").val() == ""){
-                $("#erros").html("Informe seu estado.");
-            }
-            else if ($("#id_cidade").val() == ""){
-                $("#erros").html("Informe sua cidade.");
-            }   
-            else if ($("#id_area_formacao").val() == ""){
-                $("#erros").html("Informe sua area de formação.");
-            }
-            else if ($("#id_login").val() == ""){
-                $("#erros").html("Informe seu login.");
-            }
-            else if ($("#id_senha").val() == ""){
-                $("#erros").html("Informe sua senha.");
-            }
-            else if ($("#id_senha2").val() == ""){
-                $("#erros").html("Repita a senha.");
-            }
-            else if ($("#id_senha").val() != $("#id_senha2").val()){
-                $("#erros").html("As senhas não coincidem.");
-            }    
-            else {
-                $("#id_form_rh").submit();
-            }
-        }
     </script>
 {% endblock %}
 {% block "conteudo" %}
@@ -93,14 +38,16 @@ new dgCidadesEstados(document.getElementById('estado'), document.getElementById(
             Cadastro efetuado com sucesso.
         {% endif %}
         <form action="." method="POST" name="form_rh" id="id_form_rh">
+            <a name="ancora_erros"></a>
             <div class="grid_12" id="erros"></div>
             <div class="grid_6 alpha">
             	<!-- DADOS PESSOAIS -->
                 <fieldset>
                     <legend>Dados pessoais</legend>
                     <div class="enviar-foto">
-                        <img src="{{MEDIA_URL}}img/semfoto.gif" class="rh-foto" align="Sem foto cadastrada" />
-                        <a href="#" class="btn btn-foto" title="Enviar Foto">Enviar foto</a>
+                        <img src="{{MEDIA_URL}}img/semfoto.gif" class="rh-foto" align="Sem foto cadastrada" id="foto_curriculo"/>
+                        <a href="/rh/adicionar_foto/curriculo-cadastro/?KeepThis=true&TB_iframe=true&height=600&width=800&modal=true" class="btn btn-foto thickbox" title="Enviar Foto">Enviar foto</a>
+                        <input type="hidden" name="foto" id ="id_foto" value=""  />
                     </div>
                     
                     <label>Nome</label>

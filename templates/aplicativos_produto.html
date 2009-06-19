@@ -9,7 +9,9 @@
                     <li>
                         <strong>Potências disponíveis:</strong>
                         {% for modelo in produto.pegar_potencias %}
-                               {{modelo.potencia}}{{modelo.tipo_potencia}},                            
+                               {% if modelo.potencia|converter_potencia:modelo.tipo_potencia|potencia_minima:potencia %}
+                                   {{modelo.potencia}}{{modelo.tipo_potencia}},    
+                               {% endif %}                        
                         {% endfor %}
                     </li>
                     

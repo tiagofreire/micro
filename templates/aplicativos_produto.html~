@@ -9,21 +9,13 @@
                     <li>
                         <strong>Potências disponíveis:</strong>
                         {% for modelo in produto.pegar_potencias %}
-                               {{modelo.potencia}}{{modelo.tipo_potencia}},                            
+                              
+                               {{modelo.potencia}}{{modelo.tipo_potencia}},    
+
                         {% endfor %}
                     </li>
                     
-		    <li>
-                        <strong>Cores:</strong>
-                        {% for modelo in produto.modelos.all %}
-                            {% if modelo.cores.all %}
-                                {{modelo.nome}} ( 
-                                {% for cor in modelo.cores.all %}
-                                    {{cor.nome}},  
-                                {% endfor %} )                                
-                            {% endif %} 
-                        {% endfor %} 
-                    </li>
+		   
                 </ul>
         	</div>
         </div>
