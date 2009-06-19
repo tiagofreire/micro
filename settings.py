@@ -1,6 +1,7 @@
 # Django settings for generico project.
 import os.path
 #testesteste
+#editei do pc do silvio
 DEBUG = True
 ############
 TEMPLATE_DEBUG = DEBUG
