@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>A Microsol</h2>
+        <ul>
+            <li><a href="/a_microsol/a_empresa/" title="A Empresa">A Empresa</a></li>
+            <li><a href="/a_microsol/conheca/" title="Conheça a Microsol">Conheça a Microsol</a></li>
+            <li><a href="/a_microsol/qualidade_e_premios/" class="sub-ativo" title="Qualidade e Prêmios">Qualidade e Prêmios</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="qualidade" class="grid_12">
+        {{pagina.texto|safe}}
+	</div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="premios" class="grid_12">
+    	<h3>Prêmios</h3>
+        <ul>
+            {% for foto in pagina.galeria.fotos.all %}
+        	<li><img src="{% pegar_miniatura foto 'thumbnail_qualidade_e_premios' %}" alt="{{foto.nome}}" /></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

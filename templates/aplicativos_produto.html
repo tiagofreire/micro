@@ -1,0 +1,21 @@
+    {% for produto in produtos %}
+        <div style="display:none" id="item_sugerido_{{forloop.counter}}" class="grid_9 alpha omega produto_sugerido mvc-aparelho">
+            <div id="mvc-aparelho-foto" class="grid_2 alpha"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></div>
+            <div id="mvc-aparelho-desc" class="grid_7 omega">
+            	<h4>{{produto.nome}}</h4>
+                <img src="{{MEDIA_URL}}{{produto.logo}}" alt="{{produto.nome}}" />
+                {{produto.descricao|safe}}
+                <ul>
+                    <li>
+                        <strong>Potências disponíveis:</strong>
+                        {% for modelo in produto.pegar_potencias %}
+                               {{modelo.potencia}}{{modelo.tipo_potencia}},                            
+                        {% endfor %}
+                    </li>
+                    
+		   
+                </ul>
+        	</div>
+        </div>
+    {% endfor %}
+

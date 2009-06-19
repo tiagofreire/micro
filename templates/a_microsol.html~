@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>A Microsol</h2>
+        <ul>
+            <li><a href="/a_microsol/a_empresa/" title="A Empresa">A Empresa</a></li>
+            <li><a href="/a_microsol/conheca/" title="Conheça a Microsol">Conheça a Microsol</a></li>
+            <li><a href="/a_microsol/qualidade_e_premios/" title="Qualidade e Prêmios">Qualidade e Prêmios</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        {{pagina.texto|safe}}
+        
+        <div id="chamada-int" class="grid_2 alpha">
+        	<a href="/a_microsol/a_empresa/" title="A Empresa">
+                <h3>A Empresa</h3>
+                <p>{{pagina.texto_a_empresa}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2">
+        	<a href="/a_microsol/conheca/" title="Conheça a Microsol">
+                <h3>Conheça a Microsol</h3>
+                <p>{{pagina.texto_conheca}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2 omega">
+        	<a href="/a_microsol/qualidade_e_premios/" title="Qualidade e Prêmios">
+                <h3>Qualidade e Prêmios</h3>
+                <p>{{pagina.texto_qualidade_e_premios}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

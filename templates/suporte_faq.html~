@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Suporte</h2>
+        <ul>
+            <li><a href="/suporte/manuais/" title="Manuais">Manuais</a></li>
+            <li><a href="/suporte/catalogos/" title="Catálogos">Catálogos</a></li>
+            <li><a href="/a_microsol_indica/" title="Aplicativos">A Microsol Indica</a></li>
+            <li><a href="/suporte/perguntas_frequentes/" title="Aplicativos" class="sub-ativo">Perguntas Frequentes</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+
+    <a name="faq"></a>
+    <ul id="perguntas">
+        <li><a href="#pergunta01" title="Pergunta 01">Pergunta 01</a></li>
+        <li><a href="#pergunta02" title="Pergunta 02">Pergunta 02</a></li>
+        <li><a href="#pergunta03" title="Pergunta 03">Pergunta 03</a></li>
+        <li><a href="#pergunta04" title="Pergunta 04">Pergunta 04</a></li>
+        <li><a href="#pergunta05" title="Pergunta 05">Pergunta 05</a></li>
+    </ul>
+
+    {% for pergunta in perguntas %}
+	<a name="pergunta-1"></a>
+        <div id="pergunta" class="grid_12">
+	<h3>{{pergunta.pergunta}}</h3>
+        <div class="clear">&nbsp;</div>
+        {{pergunta.resposta|safe}}
+	<a name="faq">Topo</a>
+	</div> 
+    {% endfor %} 
+
+{% endblock %}

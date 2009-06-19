@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>{{pagina.titulo}}</h2>
+        <ul>
+            <li><a href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a class="sub-ativo" href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="marca" class="grid_12">
+      <h3>Marca</h3>
+        <ul>
+            {% for marca in manuais_da_marca %}
+                {% ifequal marca.categoria "Marca" %}
+               <li><a href="#" title="{{marca.titulo}}"><img src="{{MEDIA_URL}}{{marca.arquivo}}" alt="{{marca.titulo}}" /></a></li> 
+                {% endifequal %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="marca-downloads" class="grid_12">
+    	<h3>Downloads</h3>
+        <ul>
+            {% for marca in manuais_da_marca %}
+                {% ifequal marca.categoria "Download" %}
+               <li><a href="{{MEDIA_URL}}{{marca.arquivo}}" title="{{marca.titulo}}">{{marca.titulo}}</a></li> 
+                {% endifequal %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

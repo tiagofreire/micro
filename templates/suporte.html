@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+    <div id="categoria" class="grid_12">
+        <h2>Suporte</h2>
+        <ul>
+            <li><a href="/suporte/manuais/" title="Manuais">Manuais</a></li>
+            <li><a href="/suporte/catalogos/" title="Catálogos">Catálogos</a></li>
+            <li><a href="/a_microsol_indica/" title="Aplicativos">A Microsol Indica</a></li>
+            <li><a href="/suporte/perguntas_frequentes/" title="Aplicativos">Perguntas Frequentes</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="img-chamada" class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        {{pagina.texto|safe}}        
+        <div id="chamada-int" class="grid_2 alpha">
+        	<a href="/suporte/manuais/" title="Manuais">
+                <h3>Manuais</h3>
+                <p>{{pagina.texto_manuais}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2">
+        	<a href="/suporte/catalogos/" title="Catálogos">
+                <h3>Catálogos</h3>
+                <p>{{pagina.texto_catalogos}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2 omega">
+        	<a href="/microsol_e_voce/" title="Aplicativos">
+                <h3>Aplicações</h3>
+                <p>{{pagina.texto_aplicativos}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="outros-links" class="grid_12">
+    	<h2>Perguntas Freqüentes Respondidas</h2>
+        <!-- LISTA COM AS 5 ULTIMAS NOTÍCIAS -->
+        <div class="grid_6 alpha">
+            <ul>
+                {% for pergunta in perguntas|slice:":5" %}
+                    <li><a href="/faq/{{pergunta.pergunta_slug}}/" title="">{{pergunta.pergunta}}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+        
+        <!-- LISTA COM AS OUTRAS 5 ULTIMAS NOTÍCIAS COM OFFSET 5 -->
+        <div class="grid_6 omega">
+            <ul>
+                {% for pergunta in perguntas|slice:"5:" %}
+                    <li><a href="/faq/{{pergunta.pergunta_slug}}/" title="">{{pergunta.pergunta}}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+{% endblock %}

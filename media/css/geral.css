@@ -1,0 +1,320 @@
+/* GERAL ************************************************** */
+.fl         { float:left;  }
+.fr         { float:right; }
+.btn        { -moz-border-radius:2px; background:url(../img/bg_btn.gif) left top repeat-x; border:1px solid #C2C2C2; color:#FFF !important; display:block; font-size:10px; height:14px; padding:2px 3px; text-decoration:none; text-transform:uppercase; text-align:center; vertical-align:middle; }
+.btn:hover  {  background:url(../img/bg_btn.gif) left bottom repeat-x; }
+.btn-enviar { width:41px; }
+body        { background:#393939; color:#666; font:12px "Trebuchet MS", Helvetica, Arial, sans-serif; }
+ul,ol,li    { border:0; margin:0; padding:0; outline:0; }
+
+
+/* TOPO ************************************************** */
+#topo { background:#302F30 url(../img/bg_topo.gif) repeat-x; border-bottom:8px solid #910000; height:193px; width:100%; }
+
+	/* TOPO -> MARCA E BANNER TEM¡TICO ********** */
+	#marcabanner                   { background:url(../img/bg_marcabanner.gif) center top no-repeat; height:162px; }
+	#marcabanner h1                { float:left; height:60px; margin-top:54px; overflow:hidden; width:220px; }
+	#marcabanner h1 a.microsol     { background:url(../img/marca_microsol.png) no-repeat; display:block; height:60px; overflow:hidden; text-indent:-666666px; width:220px; }
+	#marcabanner a.banner_tematico { background:url(../img/banner_tematico_novalinha.png) no-repeat; display:block; float:right; height:115px; margin-top:40px; overflow:hidden; text-indent:-666666px; width:625px; }
+
+	/* TOPO -> LINHA DE NAVEGACAO -> MENU E CAMPO DE BUSCA ********** */
+	#nav       { background:url(../img/bg_menu.gif) no-repeat; margin:0; padding:0; position:relative; width:940px; }
+		/* TOPO -> LINHA DE NAVEGACAO -> CAMPO DE BUSCA ********** */
+		#busca            { background:url(../img/bg_busca.png) no-repeat; height:16px; margin:7px 0 0 0; padding:2px 15px 0 30px; width:175px; }
+		#busca legend,
+		#busca label      { display:none; }
+		#busca .ipt_busca { background:transparent; border:none; color:#777; font:10px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; padding:0; width:100%; }
+
+
+/* MEIO ************************************************** */
+#meio           { background:#FFF url(../img/bg_meio.gif) repeat-x; padding:20px 0; }
+#meio p         { font-size:12px; }
+#meio p a       { color:#C00; text-decoration:none; }
+#meio p a:hover { text-decoration:underline; }
+#meio ol,
+#meio ul        { margin-bottom:20px; }
+#meio li        { margin-bottom:10px; list-style-position:inside; }
+
+/* RODAPE ************************************************** */
+#rodape { background:#333; border-top:3px solid #CC0000; }
+
+	/* RODAPE -> LINKS DE ACESSO RAPIDO PARA OUTRAS ¡REAS DO SITE */
+	#acesso                       { padding:20px 0; }
+	#acesso div h2                { border-bottom:1px solid #CCC; color:#CCC; font-size:12px; font-style:italic; font-weight:bold; margin:0 0 10px 0; padding:6px 0; }
+	#acesso div.saibaquemsomos h2 { width:110px; }
+	#acesso div.nossosprodutos h2 { width:95px; }
+	#acesso div.ondeencontrar h2  { width:115px; }
+	#acesso div.acessorapido h2   { width:145px; }
+	#acesso div.versoes h2        { width:105px; }
+	#acesso ul                    { float:left; margin-right:10px; width:140px; }
+	#acesso li                    { list-style-type:none; }
+	#acesso li a                  { color:#CCC; font-size:10px; text-decoration:none; }
+	#acesso li a:hover            { text-decoration:underline; }
+	
+	/* RODAPE -> NOTAS FINAIS DE RODAPE */
+	#direitos                { background:#393939; padding:15px 0 0 0; width:100%; }
+	#direitos ul             { margin-top:5px; }
+	#direitos li             { border-right:1px solid #CCC; color:#CCC; display:inline-block; float:left; font:10px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; list-style:none; margin-right:5px; padding-right:5px; }
+	#direitos li.datasite    { width:145px; }
+	#direitos li.termosdeuso { width:180px; }
+	#direitos li.mapadosite  { width:60px; }
+	#direitos li.assinenosso { border-right:none; width:110px; }
+	#direitos li:last-child  { border:none; }
+	#direitos li span        { color:#CCC; display:block; float:left; }
+	#direitos li a           { color:#CCC; display:block; float:left; text-decoration:none; }
+	#direitos li a:hover     { text-decoration:underline; }
+	#direitos h2             { display:block; float:right; height:16px; width:42px; }
+	#direitos h2 a.index     { background:url(../img/marca_index.gif) no-repeat; display:block; height:16px; overflow:hidden; text-indent:-666666px; width:42px; }
+
+
+
+
+
+/* HOME ************************************************** */
+/* HOME - BANNER ********** */
+#banner { margin-bottom:10px; }
+	
+	/* HOME - MINI BANNERS ********** */
+	#mini-banner a            { color:#FFF; font-size:11px; margin:0; padding:0; text-decoration:none; width:220px; }
+	#mini-banner a img        { float:left; margin:0; padding:0; width:220px; }
+	#mini-banner a span       { background:url(../img/bg_minibanner.gif) left top repeat-x; display:block; float:left; height:16px; margin:0; padding:1px 7px; vertical-align:middle; width:206px; }
+	#mini-banner a:hover span { background:url(../img/bg_minibanner.gif) left bottom repeat-x; }
+	
+	/* HOME -> ULTIMAS NOTICIAS ********** */
+	#ultimas            { height:28px; margin-bottom:11px; overflow:hidden; width:940px; }
+	#ultimas h2         { background:url(../img/bg_ultimasnoticias_h.gif) no-repeat; color:#FFF; display:block; float:left; height:20px; font-size:12px; font-weight:normal; padding:8px 10px 0 10px; width:89px; }
+	#ultimas ul         { background:url(../img/bg_ultimasnoticias_not.gif) no-repeat; display:block; float:left; height:28px; overflow:hidden; padding:0 9px 0 16px; width:805px; z-index:100; }
+	#ultimas li         { list-style-type:none; height:28px; width:805px; z-index:50; }
+	#ultimas li a       { color:#CCC; display:block; height:12px; padding:8px 0; text-decoration:none; width:805px; }
+	#ultimas li a:hover { color:#FFF; }
+	#ultimas li a.seta  { background:url(../img/ico_setaultimas.png) right center no-repeat; }
+	
+	/* HOME -> DESTAQUES ********** */
+	#destaque           { margin-bottom:15px; }
+	#destaque img       { float:left; margin:0 0 15px 0; width:220px; }
+	#destaque h2        { float:left; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin:0 0 5px 0; width:220px; }
+	#destaque p         { margin:0; }
+	#destaque a         { color:#666; display:block; text-decoration:none; width:220px; }
+	#destaque a img     { float:left; margin:0 0 15px 0; width:220px; }
+	#destaque a h2      { float:left; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin:0 0 5px 0; width:220px; }
+	#destaque a p       { float:left; color:#666; display:block; text-decoration:none; width:220px; }
+	#destaque a:hover p { text-decoration:underline; }
+		
+	/* HOME -> SLIDER SHOWROOM ********** */
+	/* slider specific CSS */
+	.sliderGallery       { border:1px solid #CCC; height:160px; overflow:hidden; position:relative; width:940px; }
+	.sliderGallery ul    { list-style:none; margin:0; overflow:none; position:absolute; padding:0; white-space:nowrap; }
+	.sliderGallery ul li { display:inline; }
+	.slider              { background:url(../img/bg_slider_showroom.gif) repeat-x; font:10px "Lucida Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif; height:19px; margin-top:140px; padding:0; position:relative; text-transform:uppercase; width:940px; }
+	.handle              { background:#000; cursor:move; height:15px; padding:2px 0; position:absolute; top:0; width:160px; z-index:100; }
+	.slider span         { color:#FFF; cursor:pointer; font-size:80%; position:absolute; top:4px; z-index:110; }        
+	.slider .slider-lbl1 { left:50px;  }
+	.slider .slider-lbl2 { left:107px; }
+	.slider .slider-lbl3 { left:230px; }
+	.slider .slider-lbl4 { left:390px; }
+	.slider .slider-lbl5 { left:630px; }
+	.slider .slider-lbl6 { left:780px; }
+	.slider-left  { left:0;  }
+	.slider-right { right:0; }
+	.slider-left,
+	.slider-right { background:#333; bottom:1px; color:#FFF; display:block; font-size:12px; height:13px; padding:2px 0 4px 0; position:absolute; text-align:center; text-decoration:none; width:22px; z-index:666; }
+	.slider-left:hover,
+	.slider-right:hover { background:#000; }
+
+/* PRODUTO ************************************************** */
+#categoria h2             { border-bottom:1px solid #E4E4E4; color:#333; font:30px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:10px; padding-bottom:10px; text-align:right; }
+#categoria ul             { float:right; margin-bottom:50px; }
+#categoria li             { display:inline; list-style:none; }
+#categoria li a           { color:#999; font-size:13px; font-weight:bold; padding-left:10px; text-align:right; text-decoration:none; }
+#categoria li a.sub-ativo,
+#categoria li a:hover     { color:#333; }
+
+#vantagem            { margin-bottom:60px; margin-top:15px; }
+#vantagem a          { color:#333; display:block; text-decoration:none; }
+#vantagem a img      { float:left; margin-right:7px; }
+#vantagem a h4       { color:#333; display:block; font-size:18px; margin:0; }
+#vantagem a:hover h4 { text-decoration:none; }
+#vantagem a p        { color:#666; font-size:10px; margin:0; }
+#vantagem a:hover p  { text-decoration:underline; }
+
+#outros h2          { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+#outros ul li       { display:inline; list-style-type:none; }
+#outros li a        { display:block; float:left; padding:12px; }
+#outros li a:hover  { border:1px solid #CCC; padding:11px 11px; }
+
+/* INTERNA - NIVEL 1 ************************************************** */
+#chamada               { font:14px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:30px; }
+#chamada-int a         { font-size:12px; margin:0; padding:0; }
+#chamada-int a h3      { color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin:0 0 5px 0; text-decoration:none; }
+#chamada-int a p       { color:#666; text-decoration:none; }
+#chamada-int a p:hover { text-decoration:underline; }
+
+#outros-links h2         { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+#outros-links li         { color:#666; list-style:inside disc; margin-bottom:4px; }
+#outros-links li a       { color:#666; font-size:11px; text-decoration:none; }
+#outros-links li a:hover { text-decoration:underline; }
+
+/* INTERNA - NOTICIA ********** */
+#noticia             { margin-bottom:25px; }
+#noticia .data       { border-right:1px solid #D4D4D4; display:block; float:left; margin:0 10px 20px 0; }
+#noticia .dia        { color:#ccc; display:block; float:left; font-size:21px; font-weight:bold; line-height:70%; padding:0px 6px; text-align:center; width:30px; }
+#noticia .mes,
+#noticia .ano        { border-top:none; clear:both; color:#000; display:block; float:left; font-size:12px; font-weight:bold; line-height:95%; text-align:center; padding:0px 4px; text-transform:uppercase; width:34px; }
+#noticia .ano        { font-size:10px; font-weight:normal; }
+#noticia h3          { color:#C00; font-size:18px; margin:7px 0; text-transform:uppercase; }
+#noticia p           { font-size:12px; margin-left:52px; }
+#noticia p a         { color:#C00; text-decoration:none; }
+#noticia p a:hover   { text-decoration:underline; }
+#noticia img         { border:1px solid #E5EEF7; float:right; margin:0 0 30px 30px; }
+#noticia a.leia-mais { color:#C00; display:block; font-weight:bold; margin:-15px 0 0 52px; text-decoration:none; }
+#noticia a.leia-mais:hover { text-decoration:underline; }
+
+/* INTERNA - MIDIA -> PUBLICIDADE ********** */
+#pub-anuncios h3         { color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; text-align:left; }
+#pub-anuncios ul         { margin-bottom:30px; }
+#pub-anuncios li         { display:inline; float:left; list-style:none; margin:0 45px 40px 0; }
+#pub-anuncios li a       { border:1px solid #FFF; color:#666; display:block; float:left; font-size:11px; padding:4px; text-align:center; text-decoration:none; width:100px; }
+#pub-anuncios li a:hover { border:1px solid #CCC; }
+
+#pub-videos h3         { color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; text-align:left; }
+#pub-videos ul         { margin-bottom:30px; }
+#pub-videos li         { display:inline; float:left; list-style:none; margin:0 50px 40px 0; }
+
+/* INTERNA - MIDIA -> HOT SITES ********** */
+#hotsites           { margin-bottom:30px; }
+#hotsites h3        { color:#C00; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin:0 0 10px 0; }
+#hotsites p a       { color:#C00; text-decoration:none; }
+#hotsites p a:hover { text-decoration:underline; }
+
+/* INTERNA - MIDIA -> MANUAL DA MARCA ********** */
+#marca      { margin-bottom:50px; }
+#marca h3   { color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; text-align:left; }
+#marca ul   { position:relative; }
+#marca li   { display:inline; float:left; list-style:none; margin-right:25px; position:relative; }
+#marca li a { border:1px solid #DEDEDE; display:block; float:left; height:125px; position:relative; width:125px; }
+#marca li a:hover { border:1px solid #999; }
+
+#marca-downloads      { margin-bottom:50px; }
+#marca-downloads h3   { color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; text-align:left; }
+#marca-downloads li   { display:block; margin-bottom:10px; }
+#marca-downloads li a { background:url(../img/ico_download.gif) no-repeat; color:#666; display:block; height:16px; font-size:11px; padding:3px 0 0 20px; text-decoration:none; }
+#marca-downloads li a:hover { text-decoration:underline; }
+
+/* INTERNA - MICROSOL E VOCE ********** */
+#mvc-produtos h3             { border:none; color:#333; font-size:14px; }
+#mvc-produtos li             { display:block; float:left; list-style:none; margin-bottom:5px; width:220px; }
+#mvc-produtos li a           { -moz-border-radius:5px; border:2px solid #FFF; color:#666; display:block; float:left; padding:5px 10px; text-decoration:none; width:200px; }
+#mvc-produtos li a img       { float:left; margin-right:20px; }
+#mvc-produtos li a strong    { display:block; margin-top:15px; }
+#mvc-produtos li a:hover,
+#mvc-produtos li a.mvc-ativo { border:2px solid #D4D4D4; }
+
+.mvc-aparelho          { margin-bottom:40px; }
+#mvc-aparelhos h3      { color:#333; font-size:14px; }
+#mvc-aparelho-foto     { text-align:center; }
+#mvc-aparelho-desc h4  { display:none; }
+#mvc-aparelho-desc img { margin-bottom:5px; }
+#mvc-aparelho-desc p   { margin-bottom:5px; }
+#mvc-aparelho-desc li  { list-style:none; }
+#mvc-aparelho-desc li strong { color:#C00; }
+
+/* INTERNA -> PRODUTOS DESCONTINUADOS ********** */
+#descontinuado            { margin-bottom:50px; }
+#descontinuado img        { margin-bottom:15px; }
+#descontinuado li         { display:block; margin-bottom:10px; }
+#descontinuado li a       { background:url(../img/ico_download.gif) no-repeat; color:#666; display:block; height:16px; font-size:11px; padding:3px 0 0 20px; text-decoration:none; }
+#descontinuado li a:hover { text-decoration:underline; }
+
+/* INTERNA - FALE CONOSCO ********** */
+#faleconosco form                  { margin:0 0 30px 0; padding:0; }
+#faleconosco form fieldset         { border:none; margin:0; padding:0;  }
+#faleconosco form legend           { display:none; }
+#faleconosco form label            { color:#333; display:block; font:14px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:3px; text-align:left; }
+#faleconosco form .lbl_cbx,
+#faleconosco form .lbl_rdo         { clear:right; cursor:pointer; float:left; font-size:12px; }
+#faleconosco form input            { -moz-border-radius:5px; border:1px solid #CCC; font-size:14px; margin-bottom:20px; padding:4px; }
+#faleconosco form .ipt_faleconosco { width:452px; }
+#faleconosco form .ipt_email       { width:292px; }
+#faleconosco form .ipt_ddd         { margin-right:5px; text-align:center; width:26px; }
+#faleconosco form .ipt_fone        { text-align:center; width:84px; }
+#faleconosco form .cbx,
+#faleconosco form .rdo             { cursor:pointer; float:left; margin:0 5px 5px 0; padding:0; }
+#faleconosco form select           { -moﬂz-border-radius:5px; border:1px solid #CCC; margin-bottom:20px; padding:4px; width:132px; }
+#faleconosco form textarea         { -moz-border-radius:5px; border:1px solid #CCC; font-size:14px; height:160px; overflow:auto; padding:4px; width:452px; }
+#faleconosco form textarea.sam     { height:210px; }
+
+/* INTERNA - RH ********** */
+#rh form                  { margin:0 0 30px 0; padding:0; }
+#rh form fieldset         { border:none; margin:0; padding:0;  }
+#rh form legend           { display:none; }
+#rh form label            { color:#333; display:block; font:14px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:3px; text-align:left; }
+#rh form .lbl_cbx,
+#rh form .lbl_rdo         { clear:right; cursor:pointer; float:left; font-size:12px; }
+#rh form input            { -moz-border-radius:5px; border:1px solid #CCC; font-size:14px; margin-bottom:20px; padding:4px; }
+#rh form .ipt_nomerh      { width:452px; }
+#rh form .ipt_email       { width:292px; }
+#rh form .ipt_area,
+#rh form .ipt_bairro      { width:132px; }
+#rh form .ipt_endereco    { width:452px; }
+#rh form .ipt_ddd         { margin-right:5px; text-align:center; width:26px; }
+#rh form .ipt_fone        { text-align:center; width:84px; }
+#rh form .ipt_dia,
+#rh form .ipt_mes,
+#rh form .ipt_ano         { text-align:center; }
+#rh form .ipt_dia,
+#rh form .ipt_mes         { margin-right:5px; width:26px; }
+#rh form .ipt_ano         { width:38px;}
+#rh form .cbx,
+#rh form .rdo             { cursor:pointer; float:left; margin:0 5px 5px 0; padding:0; }
+#rh form select           { -moﬂz-border-radius:5px; border:1px solid #CCC; margin-bottom:20px; padding:4px; width:140px; }
+#rh form textarea         { -moz-border-radius:5px; border:1px solid #CCC; font-size:14px; height:86px; overflow:auto; padding:4px; width:452px; }
+#rh form textarea.minicv  { height:158px; }
+
+
+/* INTERNA - A MICROSOL ********** */
+/* A EMPRESA */
+#matrizfiliais h3      { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin:50px 0 15px 0; padding-bottom:10px; text-align:left; }
+#matrizfiliais h4      { border:none; color:#C00; font-size:14px; margin:0; padding:0; }
+#matrizfiliais address { font-size:14px; font-style:normal; margin:0 0 20px 0; }
+/* CONHECA */
+#outras-imagens             { margin-top:50px; }
+#outras-imagens h3          { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+#outras-imagens ul li       { display:inline; list-style-type:none; }
+#outras-imagens li a        { display:block; float:left; padding:12px; }
+#outras-imagens li a:hover  { border:1px solid #CCC; padding:11px 11px; }
+/* EVOLUCAO */
+#conheca h3  { border:none; color:#C00; font-size:14px; margin:0; padding:0; }
+#evolucao    { margin-top:50px; }
+#evolucao h3 { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+/* QUALIDADE E PREMIOS */
+#qualidade    { margin-bottom:30px; }
+#qualidade h3 { border:none; color:#C00; font-size:14px; margin:0; padding:0; }
+
+#premios h3         { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+#premios ul li      { display:inline; list-style-type:none; }
+#premios li a       { display:block; float:left; padding:12px; }
+#premios li a:hover { border:1px solid #CCC; padding:11px 11px; }
+
+
+
+/* PAGINACAO ********** */
+#paginacao              { font-size:12px; }
+#paginacao h2           { border-bottom:1px solid #E4E4E4; color:#333; font:18px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; margin-bottom:15px; padding-bottom:10px; text-align:left; }
+#paginacao a,
+#paginacao a:link,
+#paginacao a:visited,
+#paginacao a:active     { background:#FFF; border:1px solid #DDD; color:#C00; margin:2px; padding:2px 6px; text-decoration:none; }
+#paginacao a:hover      { background:#C00; border:1px solid #C00; color:#FFF; }
+#paginacao span.current { background:#C00; border:1px solid #000; color:#FFF; font-weight:bold; margin:2px; padding:2px 6px; }
+#paginacao span.extend  { color:#000; margin:2px; padding:2px 6px; }
+
+/* INFORMATIVO ********** */
+.informativo_int              { width:380px; }
+#informativo label            { display:none; }
+#informativo input            { border:none; color:#666; font-size:10px; }
+#informativo .ipt_informativo { background:transparent; border-bottom:1px solid #A3A3A3; margin-bottom:6px; width:100%; }
+
+/* 404 ********** */
+#naoencontrado     { padding:25px 0; text-align:center; }
+#naoencontrado img,
+#naoencontrado p   { margin:0 auto; }

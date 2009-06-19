@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Onde Encontrar</h2>
+        <ul>
+            <li><a href="#" title="Revendas">Revendas</a></li>
+            <li><a href="/onde_encontrar/lojas_online/" title="Lojas Online">Lojas Online</a></li>
+            <li><a href="#" title="Assistência Técnica">Assistência Técnica</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="img-chamada" class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        {{pagina.texto|safe}}
+        
+        <div id="chamada-int" class="grid_2 alpha">
+        	<a href="#" title="Revendas">
+                <h3>Revendas</h3>
+                <p>{{pagina.texto_revenda}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2">
+        	<a href="/onde_encontrar/lojas_online/" title="Lojas Online">
+                <h3>Lojas Online</h3>
+                <p>{{pagina.texto_lojas_online}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2 omega">
+        	<a href="#" title="Assistência Técnica">
+                <h3>Assistência Técnica</h3>
+                <p>{{pagina.texto_assitencia_tecnica}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Fale Conosco</h2>
+        <ul>
+            <li><a href="/fale_conosco/sam/" title="Serviço de Atendimento Microsol">Serviço de Atendimento Microsol</a></li>
+            <li><a href="/fale_conosco/contato/"  title="Contato">Contato</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        {{pagina.texto|safe}}        
+        <div id="chamada-int" class="grid_2 alpha">
+        	<a href="#" title="SAM">
+                <h3>SAM</h3>
+                <p>{{pagina.texto_sam|safe}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2 omega">
+        	<a href="#" title="Contato">
+                <h3>Contato</h3>
+                <p>{{pagina.texto_contato|safe}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Cropar Imagem</title>
+<link rel="stylesheet" href="{{MEDIA_URL}}css/jcrop.css" type="text/css" />
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jcrop.js" ></script>
+    <script type="text/javascript">	
+		
+		$(document).ready(function(){
+			$('#cropBox').Jcrop({
+				onSelect: mostrarDimensoesCrop,
+				onChange: mostrarDimensoesCrop,
+                                setSelect: [ 0, 0, 85, 113],
+                                minSize: [85, 113],
+                                maxSize: [85, 113]
+				});
+                        {% if imagem_cropada %}	
+                            self.parent.tb_remove();
+                            self.parent.setar_nova_foto("{{MEDIA_URL}}{{curriculo.foto}}");  			
+                        {% endif %}
+		});
+			  
+		function mostrarDimensoesCrop(c) {
+		   $('#alturaField').val(c.h);
+		   $('#larguraField').val(c.w);
+		   $('#xInicialField').val(c.x);
+		   $('#xFinalField').val(c.x2);
+		   $('#yInicialField').val(c.y);
+		   $('#yFinalField').val(c.y2);
+		}
+			
+		function setarCoordenadas() {
+		   if (crop == null) {
+			  alert("Faça uma seleção inicial");
+		   }
+		   else {
+			  novaCoordenada = [$("#xInicialField").val(), $("#yInicialField").val(), $("#xFinalField").val(), $("#yFinalField").val()];
+			  crop.animateTo(novaCoordenada);
+		   }	    
+		}
+
+    </script>
+</head>
+<body>
+    <div id="tabContainer" class="Flora">
+        <div id="crop">
+        <form action="/rh/cropar/{{curriculo.codigo_cadastro}}/" method="POST">
+          <table width="800" border="1">
+            <tr>
+              <td>&nbsp;</td>
+              <td><div align="center"><b>{{foto.nome}}</b></div></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><div align="center" style="overflow: scroll;"><img src="{{MEDIA_URL}}{{curriculo.foto}}" id="cropBox"/></div></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><table width="90%" border="0">
+                  <tr>
+                    <td>
+                        <input type="hidden" id="alturaField" name="altura" />
+                        <input type="hidden" id="larguraField" name="largura" />
+                    </td>
+                    <td>                      
+                        <input type="hidden" id="xInicialField" name="x" />
+                        <input type="hidden" id="xFinalField" name="x2"/>
+                        <input type="hidden" id="yInicialField" name="y"/>
+                        <input type="hidden" id="yFinalField" name="y2"/>
+                      </td>
+                  </tr>
+                </table>
+                <p>&nbsp;</p></td>
+              <td></td>
+            </tr>
+           
+          </table>
+            <input name="redirect" type="hidden" value="{{post_redirect}}" />
+            <input type="submit" value="Salvar Crop" />
+         </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<div class="actions">
+    <button type="button" class="all" name="select_all" title="Select all {{ cl.opts.verbose_name_plural }}">Selecionar todos</button>
+    <button type="button" class="all" name="deselect_all" title="Deselect all {{ cl.opts.verbose_name_plural }}">Deselecionar todos</button>
+    {% for field in batchadmin_action_form %}<label>Acao {{ field }}</label>{% endfor %}
+    <button type="submit" title="executar a ao selecionada" name="index" value="{{ batchadmin_index|default:0 }}">Ir</button>
+</div>

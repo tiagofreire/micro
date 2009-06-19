@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="{{MEDIA_URL}}css/fancy.css" type="text/css" media="screen">
+<link rel="stylesheet" href="{{MEDIA_URL}}css/index_gallery.css" type="text/css" media="screen">
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/fancybox.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/scrollable.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/index_gallery_utils.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+	    $("#foto").mouseover(function(){
+		    alert("Heim");
+		});
+	});	
+</script>		
+</head>
+
+<body>
+<div id="galeria">
+    <table width="640" border="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+            <a id="fotoLink" href="" ><img id="foto" src="" /></a>
+            <div style="background-color:#0000FF; width: 320px; height: 480px; z-index: 99999;"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+    
+          <!-- custom "prev" link -->
+          <div class="more"><img src="{{MEDIA_URL}}img/setaRigth.gif" border="0" alt="Voltar" /></div>
+          <!-- custom "next" link -->
+          <div class="less"><img src="{{MEDIA_URL}}img/setaLeft.gif" border="0" alt="Avançar" /></div>
+          <!-- root element for scrollable -->
+          <div class="scrollable">
+            <!-- root element for the items -->
+            <div class="items">
+              {% for foto in galeria.fotos.all %}
+                  <img class="miniatura" src="{% pegar_miniatura foto 'thumbnail_galeria_pequeno' %}" onClick="javascript: imagemMedia('{% pegar_miniatura foto 'thumbnail_galeria_media' %}', '{{MEDIA_URL}}{{foto.arquivo}}');" title="{{foto.nome}}" alt="{{foto.nome}}"/>
+              {% endfor %}
+            </div>
+          </div>      
+        </td>
+      </tr>
+    </table>
+</div>
+<ul>
+    {% for galeria in galerias %}
+        <li>
+            <a href="javascript: carregarGaleria({{galeria.id}})"><img src="{{MEDIA_URL}}{{galeria.capa}}" /></a><br />
+            <b>{{galeria.nome}}</b>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

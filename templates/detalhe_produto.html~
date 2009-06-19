@@ -1,0 +1,70 @@
+<div id="categoria" class="grid_12">
+    <h2>Módulo Isolador Estabilizado</h2>
+    <ul>
+        <li><a href="javascript: exibir_conteudo('id_descricao');" title="">{{produto.nome|safe}}</a></li>
+         {% if produto.funcoes_e_beneficios %}<li><a href="javascript: exibir_conteudo('id_funcoes_e_beneficios');" title="">Funções e Benefícios</a></li>{% endif %}
+         {% if produto.modelos %}<li><a href="javascript: exibir_conteudo('id_modelos_disponiveis');" title="">Modelos Disponíveis</a></li>{% endif %}
+         <li><a href="#" title="">Cores</a></li>
+         {% if produto.modelos %}<li><a href="javascript: exibir_conteudo('id_aplicacoes');" title="">Aplicações</a></li>{% endif %}
+         {% if produto.tour_360 %}<li><a href="#" title="">Tour 360</a></li>{% endif %}
+         {% if produto.manual or produto.catalogo %}<li><a href="exibir_conteudo('id_dados_tecnicos');" title="">Dados Técnicos</a></li>{% endif %}
+         {% if produto.modulo_de_comunicacao %}<li><a href="#" title="">Módulo de Comunicação</a></li>{% endif %}
+         {% if produto.hotsite %}<li><a href="{{produto.hotsite}}" title="">Hotsite</a></li>{% endif %}
+    </ul>
+</div>
+<div class="clr">&nbsp;</div>
+    
+<div class="grid_4 alpha"><img src="{{MEDIA_URL}}{{produto.imagem}}" alt="MIE G3"  /></div>
+<div id="produto" class="grid_8 omega">
+    <div class="grid_6 prefix_1 suffix_1">
+        <h3><img src="{{MEDIA_URL}}{{produto.logo}}" width="107" height="16" alt="MIE G3" /></h3>
+        <div id="id_conteudo_produto">
+            {{produto.descricao|safe}}
+        </div>
+    </div>
+</div>
+
+<!-- container para informações do produto -->
+<div id="id_descricao" style="display: none;">
+    {{produto.descricao|safe}}
+</div>
+<div id="id_funcoes_e_beneficios" style="display: none;">
+    {{produto.funcoes_e_beneficios|safe}}
+</div>
+<div id="id_modelos_disponiveis" style="display: none;">
+    {% for modelo in produto.modelos.all %}
+        <h2>{{modelo.nome}}</h2>
+        Potência: {{modelo.potencia}}<br />
+        Fator de Potência: {{modelo.fator_potencia}}<br />
+        Entrada: {{modelo.entrada}}<br />
+        Saida: {{modelo.saida}}<br />
+        SGM: {% if modelo.sgm %}Sim{% else %}Não {% endif %}<br />
+    {% endfor %} 
+</div>
+<div id="id_aplicacoes" style="display: none;">
+     {% for modelo in produto.modelos.all %}
+        {{modelo.nome}}
+        <ul>
+            {% for aplicacao in modelo.aplicacoes.all %}
+                <li><img src="{{aplicacao.padrao_thumbnail}}" />{{aplicacao.nome}}
+            {% endfor %}
+        </ul>
+    {% endfor %} 
+</div>
+<div id="id_dados_tecnicos" style="display: none;">
+    {% if produto.manual %}
+         <a href="{{MEDIA_URL}}{{produto.manual}}">Manual</a>
+    {% endif %}
+    {% if produto.catalogo %}
+         <a href="{{MEDIA_URL}}{{produto.catalogo}}">Catalogo</a>
+    {% endif %}
+    {% if produto.sgm %}
+         <a href="#">Manual SGM GERAL</a>
+         <a href="#">SGM WIN 95</a>
+         <a href="#">SGM WIN 98</a>
+         <a href="#">SGM WIN 2000</a>
+         <a href="#">SGM WIN XP</a>
+         <a href="#">SGM WIN Linux</a>  
+    {% endif %}
+</div>
+<!-- Fim dos containers -->

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script language="javascript">AC_FL_RunContent = 0;</script>
+    <script src="{{MEDIA_URL}}js/AC_RunActiveContent.js" language="javascript"></script>
+    <script src="{{MEDIA_URL}}js/jquery.js" language="javascript"></script>
+    <script type="text/javascript">
+        var deslocamento = 0;
+        var largura_total = 0;
+        $(document).ready(function(){
+             $.each($(".foto_galeria"), function(indexInArray, valueOfElement){
+                 largura_total += valueOfElement.width;
+             }); 
+        });  
+        function avancar(){
+            if (Math.abs(deslocamento - 96) <= (largura_total - 400)){
+                deslocamento -= 96;
+            }
+            else {
+                deslocamento -= (largura_total - 400) - Math.abs(deslocamento);
+            }
+            $("#galeria_grid6").animate({"left": deslocamento}, 'slow');
+        }
+
+        function voltar(){
+            if ((deslocamento + 96) <= 0) {
+                deslocamento += 96;
+            } else {
+                deslocamento = 0;
+            }
+             
+            $("#galeria_grid6").animate({"left": deslocamento}, 'slow');
+        }
+    </script> 
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>A Microsol</h2>
+        
+            <ul>
+                <li><a href="/a_microsol/a_empresa/" title="A Empresa">A Empresa</a></li>
+                <li><a href="/a_microsol/conheca/" class="sub-ativo" title="Conheça a Microsol">Conheça a Microsol</a></li>
+                <li><a href="/a_microsol/qualidade_e_premios/" title="Qualidade e Prêmios">Qualidade e Prêmios</a></li>
+            </ul>
+        
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+	<div class="grid_6" id="slide-interno">
+		<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Microsol - Conheça"  />
+		<div class="container">
+			<ul class="galeria" id="galeria_grid6">
+			    {% for foto in pagina.galeria.fotos.all %}
+				    <li><a href="{{MEDIA_URL}}{{foto.arquivo}}" class="fancy_trigger"><img src="{% pegar_miniatura foto 'thumbnail_conheca' %}" alt="{{foto.nome}}" class="foto_galeria" /></a><div id="descricao_foto_{{foto.id}}" style="display: none">{{foto.descricao|safe}}</div></li>
+			    {% endfor %}
+			</ul>
+		</div>
+        <a onclick="javascript: voltar();" class="btn-voltar">Voltar</a>
+        <a onclick="javascript: avancar();" class="btn-avancar">Avan&ccedil;ar</a>
+	</div>
+    <div id="conheca" class="grid_6">
+	{{pagina.texto|safe}}
+    </div>
+    <div class="clear">&nbsp;</div>
+
+    
+    <div id="evolucao" class="grid_12">
+        <h3>Histórico dos produtos</h3>
+       <script language="javascript">
+	if (AC_FL_RunContent == 0) {
+		alert("This page requires AC_RunActiveContent.js.");
+	} else {
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '950',
+			'height', '600',
+			'src', '{{MEDIA_URL}}{{pagina.arquivo.name|slice:":-4"}}',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'catalogo',
+			'bgcolor', '#ffffff',
+			'name', '{{MEDIA_URL}}{{pagina.arquivo.name|slice:":-4"}}',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','always',
+			'movie', '{{MEDIA_URL}}{{pagina.arquivo.name|slice:":-4"}}',
+			'salign', ''
+			); //end AC code
+	}
+    </script>
+    <noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="950" height="600" id="catalogo" align="middle">
+	<param name="allowScriptAccess" value="always" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="{{MEDIA_URL}}{{pagina.arquivo}}" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="{{MEDIA_URL}}{{pagina.arquivo}}" quality="high" bgcolor="#ffffff" width="950" height="600" name="catalogo" align="middle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+    </noscript>
+
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

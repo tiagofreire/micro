@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery_timers.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery_form.js"></script>
+    <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript"></script>  
+    <script language="javascript">AC_FL_RunContent = 0;</script>
+    <script src="{{MEDIA_URL}}js/AC_RunActiveContent.js" language="javascript"></script>
+    <script type="text/javascript">
+        var noticia_atual = 1;
+
+        $(document).ready(function(){
+            $("#id_noticias_scroll").everyTime(4000, 'noticia_scroll', function(){  
+                $("#noticia_" + noticia_atual).fadeOut('slow', function(){
+                    noticia_atual += 1;
+                    if (noticia_atual > {{noticias|length}}){
+                        noticia_atual = 1;
+                    } 
+                    $("#noticia_" + noticia_atual).fadeIn('slow');
+                });
+            });
+        });
+
+        function cadastrar_newsletter(){
+            $("#info_newsletter").fadeOut("slow", function(){
+                if (validarNome($("#id_nome").val()) == false) {
+                    $("#info_newsletter").html("O campo nome não foi preenchido corretamente."); 
+                }
+                else if (validarEmail($("#id_email").val()) == false) {
+                    $("#info_newsletter").html("O campo email não foi preenchido corretamente."); 
+                }
+                else {
+                    $("#informativo").ajaxSubmit({
+                        success: function(responseText, statusText){
+                             if (responseText == 'falha') {
+                                 $("#info_newsletter").html("Houve um erro ao efetuar seu cadastro."); 
+                                 $("#info_newsletter").fadeIn("slow");  
+                             }
+                             else if (responseText == 'email_existente') {
+                                 $("#info_newsletter").html("Este email já esta cadastrado."); 
+                                 $("#info_newsletter").fadeIn("slow");
+                             }
+                             else {
+                                 $("#info_newsletter").html("Email cadastrado com sucesso."); 
+                                 $("#info_newsletter").fadeIn("slow");
+                             } 
+                        } 
+                    });
+                }
+                 
+            });
+        }
+    </script>
+
+{% endblock %}
+{% block "conteudo" %}
+        <div id="banner" class="grid_9">
+             <script language="javascript">
+	if (AC_FL_RunContent == 0) {
+		alert("This page requires AC_RunActiveContent.js.");
+	} else {
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '700',
+			'height', '259',
+			'src', 'http://media.indexvirtual.com/microsol/swf/numeracao',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'opaque',
+			'devicefont', 'false',
+			'id', 'catalogo',
+			'bgcolor', '#ffffff',
+			'name', 'http://media.indexvirtual.com/microsol/swf/numeracao',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','always',
+			'movie', 'http://media.indexvirtual.com/microsol/swf/numeracao',
+			'salign', ''
+			); //end AC code
+	}
+    </script>
+    <noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="700" height="259" id="catalogo" align="middle">
+	<param name="allowScriptAccess" value="always" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="{{MEDIA_URL}}swf/numeracao.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="{{MEDIA_URL}}swf/numeracao.swf" quality="high" bgcolor="#ffffff" width="700" height="259" name="catalogo" align="middle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+    </noscript>
+
+        </div>
+        <div id="mini-banner" class="grid_3"><a href="/midia/publicidade/" class="nossos-videos"><img src="{{MEDIA_URL}}{{pagina.video_imagem}}" alt="{{pagina.video_titulo}}" /> <span>{{pagina.video_titulo}}</span></a></div>
+        <div id="mini-banner" class="grid_3"><a href="http://guiamicrosol.indexvirtual.com" class="nosso-blog"><img src="{{MEDIA_URL}}{{pagina.blog_imagem}}" alt="{{pagina.blog_titulo}}" /> <span>{{pagina.blog_titulo}}</span></a></div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="ultimas" class="grid_12">
+            <h2>Últimas notícias</h2>
+            <ul id="id_noticias_scroll">
+                {% for noticia in noticias %}
+                    <li id="noticia_{{forloop.counter}}" {% ifnotequal forloop.counter 1 %}style="display: none;"{% endifnotequal %}><a class="seta" href="/midia/noticia/{{noticia.titulo_slug}}/" title="{{noticia.titulo}}">{{noticia.titulo}}</a></li>
+                {% endfor %}  
+            </ul>
+        </div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="destaque" class="grid_3">
+            <a href="/a_microsol_indica/" title="{{pagina.area_i_titulo}}">
+            	<img src="{{MEDIA_URL}}{{pagina.area_i_imagem}}" alt="{{pagina.area_i_titulo}}" />
+                <h2>{{pagina.area_i_titulo}}</h2>
+                <p>{{pagina.area_i_texto}}</p>
+            </a>
+        </div>
+        
+        <div id="destaque" class="grid_3">
+            <a href="/suporte/" title="{{pagina.area_ii_titulo}}">
+                <img src="{{MEDIA_URL}}{{pagina.area_ii_imagem}}" alt="{{pagina.area_ii_titulo}}" />
+                <h2>{{pagina.area_ii_titulo}}</h2>
+                <p>{{pagina.area_ii_texto}}</p>
+            </a>
+        </div>
+        
+        <div id="destaque" class="grid_3">
+            <a href="/onde_encontrar/" title="{{pagina.area_iii_titulo}}">
+                <img src="{{MEDIA_URL}}{{pagina.area_iii_imagem}}" alt="{{pagina.area_iii_titulo}}" />
+                <h2>{{pagina.area_iii_titulo}}</h2>
+                <p>{{pagina.area_iii_texto}}</p>
+            </a>
+        </div>
+        
+        <div id="destaque" class="grid_3 omega">
+            <img src="{{MEDIA_URL}}{{pagina.newslleter_imagem}}" alt="{{pagina.newslleter_titulo}}" />
+            <h2>{{pagina.newslleter_titulo}}</h2>
+            <p>{{pagina.newslleter_texto}}</p>
+            <div id="info_newsletter" style="background-color: #CECECE;"></div>
+            <form id="informativo" name="form_newsletter" action="/cadastrar_newsletter_ajax/" method="POST"> 
+            	<label>Seu nome</label> <input type="text" name="nome" id="id_nome" value="Seu nome" class="ipt_informativo" onClick="javascript: this.value=''"/>
+                <label>Seu e-mail</label> <input type="text" name="email" id="id_email" value="Seu e-mail" class="ipt_informativo" onClick="javascript: this.value=''"/>
+                <a href="javascript:cadastrar_newsletter(); void(0);" title="Enviar" class="btn btn-enviar fr">Enviar</a>
+            </form>
+        </div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="showroom" class="grid_12">
+            <div class="sliderGallery">
+                <ul>
+                    <li><a href="/produtos/fontes_para_notebook/"><img class="fonte-notebook" src="{{MEDIA_URL}}img/01notepower.jpg"></a></li>    
+                    <li><a href="/produtos/estabilizador/sol-ng3/"><img class="estabilizador" src="{{MEDIA_URL}}img/02solng3.jpg"></a></li>
+                    <li><a href="/produtos/estabilizador/sol-ng3-plus/"><img class="estabilizador" src="{{MEDIA_URL}}img/03solng3plus.jpg"></a></li>
+                    <li><a href="/produtos/estabilizador/hexus/"><img class="estabilizador" src="{{MEDIA_URL}}img/04hexus.jpg"></a></li>
+                    <li><a href="/produtos/estabilizador/sol-100015002000/"><img class="estabilizador" src="{{MEDIA_URL}}img/05solprofissional.jpg"></a></li>
+
+                    <li><a href="/produtos/nobreak/ipower/"><img class="nobreak" src="{{MEDIA_URL}}img/06mieg3"></a></li>
+                    <li><a href="/produtos/nobreak/ps-800/"><img class="nobreak" src="{{MEDIA_URL}}img/07ipower.jpg"></a></li>
+                    <li><a href="/produtos/nobreak/stay-700-se/"><img class="nobreak" src="{{MEDIA_URL}}img/08ps800.jpg"></a></li>
+                    <li><img class="nobreak" src="{{MEDIA_URL}}img/09stay700se.jpg"></li>
+                    <li><img class="acessorios" src="{{MEDIA_URL}}img/10bateria.jpg"></li>
+                    <li><img class="acessorios" src="{{MEDIA_URL}}img/11extensao.jpg"></li> 
+
+                </ul>
+                <div class="slider ui-slider">
+                    <a href="javascript:void(0)" style="border: medium none ; outline-color: -moz-use-text-color; outline-style: none; outline-width: medium;"><div style="left: 16px;" class="handle"></div></a>
+                    <span class="slider-lbl1">Fonte para notebook</span>
+                    <span class="slider-lbl3">Estabilizador</span>
+                    <span class="slider-lbl4">Módulo Isolador Estabilizado</span>
+                    <span class="slider-lbl5">No Break</span>
+                    <span class="slider-lbl6">Acessórios</span>
+                </div>
+                <a href="javascript:void(0);" class="slider-left">&lt;</a>
+                <a href="javascript:void(0);" class="slider-right">&gt;</a>
+			</div>
+        </div>
+{% endblock %}

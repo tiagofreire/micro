@@ -1,0 +1,65 @@
+{% if app_list %}
+    
+    <div id="accordion" class="ui-accordion">
+    {% for app in app_list %}
+    <div class="ui-accordion-group">
+    <span class="ui-accordion-left"></span><h3 tabindex="0" class="ui-accordion-header"><a href="{{ app.app_url }}">
+            {% ifequal app.name "Responsabilidadesocial" %}
+                Responsabilidade Social
+            {% else %}
+                {% ifequal app.name "Index_Gallery"%}
+                   Gerenciador de Fotos e Galerias
+                {% else %}
+                    {% ifequal app.name "Tvfbs"%}
+                       TV FBS
+                    {% else %}
+                        {% ifequal app.name "Faleconosco"%}
+                           Fale Conosco
+                        {% else %}
+                            {% ifequal app.name "Quemsomos"%}
+                               Quem Somos
+                            {% else %}
+                                {{app.name}}
+                            {% endifequal %}
+                        {% endifequal %} 
+                    {% endifequal %} 
+                {% endifequal %}       
+            {% endifequal %}
+        </a><span class="ui-accordion-right"></span></h3>
+        <div class="module ui-accordion-content">
+        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+        {% for model in app.models %}
+            <tr>
+            {% if model.perms.change %}
+                <th scope="row">
+                   <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                </th>
+            {% else %}
+                <th scope="row">{{ model.name }}</th>
+            {% endif %}
+
+            {% if model.perms.add %}
+                 <td>
+                <a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a>
+                </td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+
+            {% if model.perms.change %}
+                <td>
+                  <a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a>
+                </td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>{% trans "You don't have permission to edit anything." %}</p>
+{% endif %}

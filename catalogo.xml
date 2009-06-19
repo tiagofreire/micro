@@ -1,0 +1,43 @@
+<FlippingBook>
+	<width>600</width>
+	<height>450</height>
+
+	<scaleContent>true</scaleContent>
+	<firstPage>0</firstPage>
+	<alwaysOpened> false </alwaysOpened>
+	<autoFlip> 50 </autoFlip>
+	<flipOnClick> false </flipOnClick>
+
+	<shadowsDepth> 1 </shadowsDepth>
+
+	<moveSpeed> 2 </moveSpeed>
+	<closeSpeed> 3 </closeSpeed>
+	<gotoSpeed> 3 </gotoSpeed>
+
+	<flipSound> mp3/01.mp3</flipSound>
+	<pageBack> 0xFFFFFF </pageBack>
+
+	<loadOnDemand> true </loadOnDemand>
+	<cachePages> true </cachePages>
+	<usePreloader> true </usePreloader>
+
+	<pages>
+		<page>__img/feminize/catalogo/Imagem1.png</page>
+		<page>__img/feminize/catalogo/Imagem2.png</page>
+		<page>__img/feminize/catalogo/Imagem3.png</page>
+		<page>__img/feminize/catalogo/Imagem4.png</page>
+		<page>__img/feminize/catalogo/Imagem5.png</page>
+		<page>__img/feminize/catalogo/Imagem6.png</page>
+		<page>__img/feminize/catalogo/Imagem7.png</page>
+		<page>__img/feminize/catalogo/Imagem8.png</page>
+		<page>__img/feminize/catalogo/Imagem9.png</page>
+		<page>__img/feminize/catalogo/Imagem10.png</page>
+		<page>__img/feminize/catalogo/Imagem11.png</page>
+		<page>__img/feminize/catalogo/Imagem12.png</page>
+		<page>__img/feminize/catalogo/Imagem13.png</page>
+		<page>__img/feminize/catalogo/Imagem14.png</page>
+		<page>__img/feminize/catalogo/Imagem15.png</page>
+		
+		
+	</pages>
+</FlippingBook>

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/cidade_estados.js" ></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-maskedinput.js" ></script>
+    <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+        window.onload = function() {
+new dgCidadesEstados(document.getElementById('id_estado'), document.getElementById('id_cidade'), true);
+}
+    $(document).ready(function(){
+        $("#id_ddd").mask("(99)");
+        $("#id_telefone").mask("9999-9999");
+    });
+
+    function enviar_formulario(){
+            if (validarNome($("#id_nome").val()) == false){
+                $("#erros").html("Preencha o campo nome corretamente."); 
+            }
+            else if (validarEmail($("#id_email").val()) == false){
+                $("#erros").html("Preencha o campo email corretamente.");
+            }      
+            else if ($("#id_ddd").val() == "" || $("#id_ddd").val() == "(__)"){
+                $("#erros").html("Informe o DDD do seu telefone.");
+            }
+            else if ($("#id_telefone").val() == "" || $("#id_telefone").val() == "____-____"){
+                $("#erros").html("Informe o seu telefone.");
+            }
+            else if ($("#id_estado").val() == ""){
+                $("#erros").html("Informe seu estado.");
+            }
+            else if ($("#id_cidade").val() == ""){
+                $("#erros").html("Informe sua cidade.");
+            }
+            else if ($("#id_mensagem").val() == ""){
+                $("#erros").html("Informe a mensagem.");
+            }    
+            else {
+                $("#id_form_faleconosco").submit();
+            }
+        }
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Fale Conosco</h2>
+        <ul>
+            <li><a href="/fale_conosco/sam/" title="Serviço de Atendimento Microsol">Serviço de Atendimento Microsol</a></li>
+            <li><a href="/fale_conosco/contato/" class="sub-ativo" title="Contato">Contato</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    <div id="erros" class="grid_12"></div>
+    {% if enviado %}
+        <div id="erros" class="grid_12">Mensagem enviada com sucesso!</div>
+    {% endif %}
+    <div id="faleconosco" class="grid_12">
+        <form action="." id="id_form_faleconosco" method="POST">
+        	<fieldset>
+                <legend>Contato</legend>
+                
+                <div class="grid_6 alpha">
+                	<label>Nome</label>
+                    <input type="text" class="ipt_faleconosco" id="id_nome" name="nome"/>
+                    <br />
+                    
+                    <div class="grid_4 alpha">
+                        <label>E-mail</label>
+                        <input type="text" class="ipt_email" id="id_email" name="email"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                    <label>DDD/Telefone</label>
+                    <input type="text" class="ipt_ddd" id="id_ddd" name="ddd"/>
+                    <input type="text" class="ipt_fone" id="id_telefone" name="telefone"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Setor</label>
+                        <select id="id_setor" name="setor">
+                            <option "Comercial">Comercial</option>
+                            <option "Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>Estado</label>
+                        <select id="id_estado" name="estado">
+                            <option value="Selecione">Selecione</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AM">AM</option>
+                            <option value="AP">AP</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MG">MG</option>
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="PR">PR</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="RS">RS</option>
+                            <option value="SC">SC</option>
+                            <option value="SE">SE</option>
+                            <option value="SP">SP</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Cidade</label>
+                        <select id="id_cidade" name="cidade">
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                </div>
+                
+                <div class="grid_6 omega">
+                    <label>Mensagem</label>
+                    <textarea id="id_mensagem" name="mensagem"></textarea>
+                    <br />
+                    
+                    <input type="checkbox" class="cbx" checked /> <label class="lbl_cbx">Desejo receber novidades da Microsol</label>
+                </div>
+                <div class="clear">&nbsp;</div>
+                
+                <a href="javascript: enviar_formulario(); void(0);" class="btn btn-enviar fr" title="Enviar">Enviar</a>
+            </label>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+--------------Um PRODUTO possui UMA APLICAÇÔES
+--------------Uma APLICAÇÃO possui UMA OU VARIAS VERSÕES
+--------------Uma VERSÃO possui UM OU VARIOS TIPO DE APLICAÇÂO             
+
+
+Dados Tecnicos -|
+                |-Manual
+                |-Catalogo
+                |-SGM (versões do programa)
+                |-SGM (manual)
+
+Funções e beneficions -|
+                       |-Texto
+
+Aplicação -|
+           |-Icone 
+           |-Nome
+
+Modelos Disponiveis -|
+                     |-Versão (lista das versões do produto)
+
+Versão -|
+        |-Nome
+        |-Aplicações
+        |-Potencia
+        |-Fator de potencia
+        |-Entrada
+        |-Saida 
+        |-SGM (sim ou não)
+
+Aplicações -|
+            |-Versões
+
+SGM -|
+     |-Texto
+
+Módulo de comunicação -|
+                       |- Texto
+
+
+Observações:
+    *Todos os produtos que possuem o mesmo texto no item SGM
+
+

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript">
+        function exibir_conteudo(id_conteudo){
+            $("#id_conteudo_produto").fadeOut('slow', function(){
+                var html = "";
+                html = $("#" + id_conteudo).html();
+                $("#id_conteudo_produto").html(html);
+                $("#id_conteudo_produto").fadeIn('slow');
+            });
+        }
+    </script>  
+{% endblock %}
+{% block "conteudo" %}
+<div id="id_container">
+    <div id="categoria" class="grid_12">
+        <h2>{{categoria_produto}}</h2>
+        <ul>
+            <li><a href="javascript: exibir_conteudo('id_descricao');" title="">{{produto.nome|safe}}</a></li>
+            {% if produto.funcoes_e_beneficios %}<li><a href="javascript: exibir_conteudo('id_funcoes_e_beneficios');" title="">Funções e Benefícios</a></li>{% endif %}
+            {% if produto.modelos %}<li><a href="javascript: exibir_conteudo('id_modelos_disponiveis');" title="">Modelos Disponíveis</a></li>{% endif %}
+            <li><a href="#" title="">Cores</a></li>
+            {% if produto.modelos %}<li><a href="javascript: exibir_conteudo('id_aplicacoes');" title="">Aplicações</a></li>{% endif %}
+            {% if produto.tour_360 %}<li><a href="#" title="">Tour 360</a></li>{% endif %}
+            {% if produto.manual or produto.catalogo %}<li><a href="exibir_conteudo('id_dados_tecnicos');" title="">Dados Técnicos</a></li>{% endif %}
+            {% if produto.modulo_de_comunicacao %}<li><a href="#" title="">Módulo de Comunicação</a></li>{% endif %}
+            {% if produto.hotsite %}<li><a href="{{produto_destaque.hotsite}}" title="">Hotsite</a></li>{% endif %}
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_4 alpha"><img src="{{MEDIA_URL}}{{produto.imagem}}" alt="{{produto.nome}}"  /></div>
+    <div id="produto" class="grid_8 omega">
+        <div class="grid_6 prefix_1 suffix_1">
+            <h3><img src="{{MEDIA_URL}}{{produto_destaque.logo}}" width="107" height="16" alt="{{produto.nome}}" /></h3>
+            <div id="id_conteudo_produto">
+                {{produto.descricao|safe}}
+            </div>
+        </div>
+    </div>
+
+<!-- container para informações do produto -->
+<div id="id_descricao" style="display: none;">
+    {{produto.descricao|safe}}
+</div>
+<div id="id_funcoes_e_beneficios" style="display: none;">
+    {{produto.funcoes_e_beneficios|safe}}
+</div>
+<div id="id_modelos_disponiveis" style="display: none;">
+    {% for modelo in produto.modelos.all %}
+        <h2>{{modelo.nome}}</h2>
+        Potência: {{modelo.potencia}}<br />
+        Fator de Potência: {{modelo.fator_potencia}}<br />
+        Entrada: {{modelo.entrada}}<br />
+        Saida: {{modelo.saida}}<br />
+        SGM: {% if modelo.sgm %}Sim{% else %}Não {% endif %}<br />
+    {% endfor %} 
+</div>
+<div id="id_aplicacoes" style="display: none;">
+     {% for modelo in produto.modelos.all %}
+        {{modelo.nome}}
+        <ul>
+            {% for aplicacao in modelo.aplicacoes.all %}
+                <li><img src="{{aplicacao.padrao_thumbnail}}" />{{aplicacao.nome}}
+            {% endfor %}
+        </ul>
+    {% endfor %} 
+</div>
+<div id="id_dados_tecnicos" style="display: none;">
+    {% if produto.manual %}
+         <a href="{{MEDIA_URL}}{{produto_destaque.manual}}">Manual</a>
+    {% endif %}
+    {% if produto.catalogo %}
+         <a href="{{MEDIA_URL}}{{produto_destaque.catalogo}}">Catalogo</a>
+    {% endif %}
+    {% if produto.sgm %}
+         <a href="#">Manual SGM GERAL</a>
+         <a href="#">SGM WIN 95</a>
+         <a href="#">SGM WIN 98</a>
+         <a href="#">SGM WIN 2000</a>
+         <a href="#">SGM WIN XP</a>
+         <a href="#">SGM WIN Linux</a>  
+    {% endif %}
+</div>
+<!-- Fim dos containers -->
+
+</div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="vantagem" class="grid_3"><a href="#" title="Tecnologia"><img src="{{MEDIA_URL}}img/produto_vant_tecnologia.jpg" alt="Tecnologia" /><h4>Tecnologia</h4><p>Saiba qual produto Microsol atende melhor à sua necessidade. Selecione os equipamentos.</p></a></div>
+    <div id="vantagem" class="grid_3"><a href="#" title="Segurança"><img src="{{MEDIA_URL}}img/produto_vant_seguranca.jpg" alt="Segurança" /><h4>Segurança</h4><p>Encontre e baixe os manuais completos, catálogos e aplicativos, leias as dúvidas freqüentes e saiba onde.</p></a></div>
+    <div id="vantagem" class="grid_3"><a href="#" title="Versatilidade"><img src="{{MEDIA_URL}}img/produto_vant_versatilidade.jpg" alt="Versatilidade" /><h4>Versatilidade</h4><p>A Microsol está presente em 32 cidades em todo país. Encontre as revendas autorizadas mais próximas.</p></a></div>
+    <div id="vantagem" class="grid_3"><a href="#" title="Praticidade"><img src="{{MEDIA_URL}}img/produto_vant_praticidade.jpg" alt="Praticidade" /><h4>Praticidade</h4><p>A Microsol está presente em 32 cidades em todo país. Encontre as revendas autorizadas mais próximas.</p></a></div>
+    <div class="clear">&nbsp;</div>
+    <div id="outros" class="grid_12">
+    	<h2>Outros Módulos Isoladores Estabilizados</h2>
+        <ul>
+            {% for produto in produtos %}
+                <li><a href="/produtos/nobreak_detalhe/{{produto.id}}/" title="{{produto.nome}}"><img src="{{produto.padrao_thumbnail}}" width="76" height="76" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock %}

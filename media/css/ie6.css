@@ -1,0 +1,17 @@
+/* GERAL ************************************************** */
+.btn { padding:1px 3px !important; }
+
+/* TOPO ************************************************** */
+#topo        { height:193px; overflow:hidden; }
+#marcabanner {  }
+#nav         {  }
+#menu        {  }
+#busca       {  }
+
+/* RODAPE -> LINKS DE ACESSO RAPIDO PARA OUTRAS ÁREAS DO SITE */
+#acesso ul  { width:120px; }
+#acesso div { margin-right:0; }
+
+/* HOME -> ULTIMAS NOTICIAS ********** */
+#ultimas ul { background:url(../img/bg_ultimasnoticias_not.gif) no-repeat; display:block; float:left; height:28px !important; overflow:hidden; padding:0 9px 0 16px; width:805px; z-index:100; }
+#ultimas li { list-style-type:none; width:805px; z-index:50; }

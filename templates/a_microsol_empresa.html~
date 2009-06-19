@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>A Microsol</h2>
+        <ul>
+            <li><a href="/a_microsol/a_empresa/" class="sub-ativo" title="A Empresa">A Empresa</a></li>
+            <li><a href="/a_microsol/conheca/" title="Conheça a Microsol">Conheça a Microsol</a></li>
+            <li><a href="/a_microsol/qualidade_e_premios/" title="Qualidade e Prêmios">Qualidade e Prêmios</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_6 alpha"><img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Microsol - A Empresa"  /></div>
+    <div class="grid_6 omega">
+        dedede
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="matrizfiliais" class="grid_12 alpha omega">
+        <h3>Localização</h3>
+        <div class="grid_6 alpha">
+            {{pagina.texto_filiais|safe}}
+        </div>
+        {% if pagina.imagem_filiais %}
+            <div class="grid_6 omega"><img src="{{MEDIA_URL}}{{pagina.imagem_filiais}}" alt="Microsol - A Empresa"  /></div>
+        {% endif %}
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

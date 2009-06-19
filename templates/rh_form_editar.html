@@ -1,0 +1,622 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/thickbox.css" />
+    <script type="text/javascript" src="{{MEDIA_URL}}js/cidade_estados.js" ></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-maskedinput.js" ></script>
+    <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/thickbox.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+        function medio_conclusao_validar(){            
+            if($("#id_medio_status").val() == "1"){
+                $("#div_medio_serie").css("display", "none");  
+                $("#label_medio_conclusao").html("Ano de conclusão"); 
+            }
+            else {
+                $("#div_medio_serie").fadeIn("slow");  
+                $("#label_medio_conclusao").html("Previsão de Término");   
+            }  
+        }
+
+        function graduacao_conclusao_validar(){            
+            if($("#id_graduacao_status").val() == "1"){
+                $("#div_graduacao_semestre").css("display", "none");  
+                $("#label_graduacao_conclusao").html("Ano de conclusão"); 
+            }
+            else {
+                $("#div_graduacao_semestre").fadeIn("slow");  
+                $("#label_graduacao_conclusao").html("Previsão de Término");   
+            }  
+        }
+
+        function posgraduacao_conclusao_validar(){            
+            if($("#id_posgraduacao_status").val() == "1"){
+                $("#div_posgraduacao_semestre").css("display", "none");  
+                $("#label_posgraduacao_conclusao").html("Ano de conclusão"); 
+            }
+            else {
+                $("#div_posgraduacao_semestre").fadeIn("slow");  
+                $("#label_posgraduacao_conclusao").html("Previsão de Término");   
+            }  
+        }
+          
+      
+        window.onload = function() {
+new dgCidadesEstados(document.getElementById('estado'), document.getElementById('cidade'), true);
+}
+    $(document).ready(function(){
+        $("#id_ddd_telefone").mask("(99)");
+        $("#id_ddd_celular").mask("(99)");
+        $("#id_telefone").mask("9999-9999");
+        $("#id_celular").mask("9999-9999");
+        $("#id_dia").mask("99");
+        $("#id_mes").mask("99");
+        $("#id_ano").mask("9999");
+        $("#id_medio_conclusao").mask("9999");
+        $("#id_graduacao_conclusao").mask("9999");
+        $("#id_pos_graduacao_conclusao").mask("9999");
+    });
+
+    function setar_nova_foto(caminho){
+        $("#foto_curriculo").attr("src", caminho);
+    }                 
+  
+    function enviar_curriculo(){
+            if (validarNome($("#id_nome").val()) == false){
+                $("#erros").html("Preencha o campo nome corretamente."); 
+            }
+            else if (validarEmail($("#id_email").val()) == false){
+                $("#erros").html("Preencha o campo email corretamente.");
+            }
+            else if ($("#id_sexo").val() == "Selecione"){
+                $("#erros").html("Selecione um sexo.");
+            }
+            else if ($("#id_estado_civil").val() == "Selecione"){
+                $("#erros").html("Selecione seu estado civil.");
+            }
+            else if ($("#id_filhos").val() == "Selecione"){
+                $("#erros").html("Selecione a quantidade de filhos que possui.");
+            }   
+            else if ($("#id_dia").val() == "" || $("#id_dia").val() == "__"){
+                $("#erros").html("Informe o dia do seu nascimento.");
+            } 
+            else if ($("#id_mes").val() == "" || $("#id_dia").val() == "__"){
+                $("#erros").html("Informe o mês do seu nascimento.");
+            }
+            else if ($("#id_ano").val() == "" || $("#id_dia").val() == "____"){
+                $("#erros").html("Informe o ano do seu nascimento.");
+            }     
+            else if ($("#id_ddd_telefone").val() == "" || $("#id_ddd_telefone").val() == "(__)"){
+                $("#erros").html("Informe o DDD do seu telefone.");
+            }
+            else if ($("#id_telefone").val() == "" || $("#id_telefone").val() == "____-____"){
+                $("#erros").html("Informe o seu telefone.");
+            }
+            else if ($("#id_ddd_celular").val() == "" || $("#id_ddd_celular").val() == "(__)"){
+                $("#erros").html("Informe o DDD do seu celular.");
+            }
+            else if ($("#id_celular").val() == "" || $("#id_celular").val() == "____-____"){
+                $("#erros").html("Informe o seu celular.");
+            }    
+            else if ($("#id_endereco").val() == ""){
+                $("#erros").html("Informe seu endereço.");
+            }
+            else if ($("#id_complemento").val() == ""){
+                $("#erros").html("Informe o complemento do seu endereço.");
+            }
+            else if ($("#id_bairro").val() == ""){
+                $("#erros").html("Informe seu bairro.");
+            }
+            else if ($("#id_estado").val() == ""){
+                $("#erros").html("Informe seu estado.");
+            }
+            else if ($("#id_cidade").val() == ""){
+                $("#erros").html("Informe sua cidade.");
+            }
+            else if (validarCPF($("#id_cpf").val()) == false){
+                $("#erros").html("Informe um número de CPF valido.");
+            } 
+            else if ($("#id_salario").val() == ""){
+                $("#erros").html("Informe sua pretensão salarial.");
+            } 
+            else if ($("#id_medio_instituicao").val() == ""){
+                $("#erros").html("Informe sua instituição do Ensino Médio.");
+            }
+            else if ($("#id_medio_status").val() == "Selecione"){
+                $("#erros").html("Informe seu Status no Ensino Médio.");
+            }
+            else if ($("#id_medio_status").val() == "0"){
+                if ($("#id_medio_serie").val() == ""){
+                    $("#erros").html("Informe sua série no Ensino Médio.");
+                }
+                else if ($("#id_medio_conclusao").val() == ""){
+                    $("#erros").html("Informe a previsão de término do Ensino Médio.");
+                }      
+            }
+            else if ($("#id_medio_status").val() == "1"){
+                else if ($("#id_medio_conclusao").val() == ""){
+                    $("#erros").html("Informe a previsão de término do Ensino Médio.");
+                }      
+            }  
+            else if ($("#id_graduacao_instituicao").val() == ""){
+                $("#erros").html("Informe sua instituição de Graduação.");
+            }
+            else if ($("#id_graduacao_status").val() == "Selecione"){
+                $("#erros").html("Informe seu Status na Graduação.");
+            }
+            else if ($("#id_graduacao_status").val() == "0"){
+                if ($("#id_graduacao_semestre").val() == ""){
+                    $("#erros").html("Informe seu semestre na Graduação.");
+                }
+                else if ($("#id_graduacao_conclusao").val() == ""){
+                    $("#erros").html("Informe a previsão de término da Graduação.");
+                }      
+            }
+            else if ($("#id_graduacao_status").val() == "1"){
+                else if ($("#id_graduacao_conclusao").val() == ""){
+                    $("#erros").html("Informe o ano de término da Graduação.");
+                }      
+            }
+            else if ($("#id_pos_graduacao_instituicao").val() == ""){
+                $("#erros").html("Informe sua instituição de Pós-Graduação.");
+            }
+            else if ($("#id_posgraduacao_status").val() == "Selecione"){
+                $("#erros").html("Informe seu Status na Pós-Graduação.");
+            }
+            else if ($("#id_posgraduacao_status").val() == "0"){
+                if ($("#id_pos_graduacao_semestre").val() == ""){
+                    $("#erros").html("Informe seu semestre na Pós-Graduação.");
+                }
+                else if ($("#id_pos_graduacao_conclusao").val() == ""){
+                    $("#erros").html("Informe a previsão de término da Pós-Graduação.");
+                }      
+            }
+            else if ($("#id_posgraduacao_status").val() == "1"){
+                else if ($("#id_pos_graduacao_conclusao").val() == ""){
+                    $("#erros").html("Informe o ano de término da Pós-Graduação.");
+                }      
+            }  
+
+
+            else if ($("#id_area_formacao").val() == ""){
+                $("#erros").html("Informe sua area de formação.");
+            }
+            else if ($("#id_login").val() == ""){
+                $("#erros").html("Informe seu login.");
+            }
+            else if ($("#id_senha").val() == ""){
+                $("#erros").html("Informe sua senha.");
+            }
+            else if ($("#id_senha2").val() == ""){
+                $("#erros").html("Repita a senha.");
+            }
+            else if ($("#id_senha").val() != $("#id_senha2").val()){
+                $("#erros").html("As senhas não coincidem.");
+            }
+            else {
+                $("#id_form_rh").submit();
+            }
+        }
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Oportunidades</h2>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="rh" class="grid_12">
+        {% if cadastrado %}
+            Cadastro efetuado com sucesso.
+        {% endif %}
+        {{formulario.errors}}
+        <form action="." method="POST" name="form_rh" id="id_form_rh">
+            <div class="grid_12" id="erros"></div>
+            <div class="grid_6 alpha">
+            	<!-- DADOS PESSOAIS -->
+                <fieldset>
+                    <legend>Dados pessoais</legend>
+                    <div class="enviar-foto">
+                        <img src="{% if curriculo.foto %} {{MEDIA_URL}}{{curriculo.foto}}{% else %}{{MEDIA_URL}}img/semfoto.gif {% endif %}" class="rh-foto" align="Sem foto cadastrada" id="foto_curriculo"/>
+                        <a href="/rh/adicionar_foto/{{curriculo.codigo_cadastro}}/?KeepThis=true&TB_iframe=true&height=600&width=800&modal=true" class="btn btn-foto thickbox" title="Enviar Foto">Enviar foto</a>
+
+                    </div>
+                    
+                    <label>Nome</label>
+                    <input type="text" id="id_nome" name="nome" class="ipt_nomerh" tabindex="1" value="{{curriculo.nome}}"/>
+                    <br />
+					
+                    <label>E-mail</label>
+                    <input type="text" id="id_email" name="email" class="ipt_rhemail" tabindex="2" value="{{curriculo.email}}"/>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                    	<label>Sexo</label>
+                        <select tabindex="3" id="id_sexo" name="sexo">
+                            <option value="Selecione">Selecione</option>
+                            <option value="Masculino" {% ifequal curriculo.sexo "Masculino" %} selected {% endifequal %}>Masculino</option>
+                            <option value="Feminino" {% ifequal curriculo.sexo "Feminino" %} selected {% endifequal %}>Feminino</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2">
+                    	<label>Estado Civil</label>
+                        <select tabindex="3" id="id_estado_civil" name="estado_civil">
+                            <option value="Selecione">Selecione</option>
+                            <option value="Casado" {% ifequal curriculo.estado_civil "Casado" %} selected {% endifequal %}>Casado</option>
+                            <option value="Solteiro" {% ifequal curriculo.estado_civil "Solteiro" %} selected {% endifequal %}>Solteiro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                    	<label>Filhos</label>
+                        <select tabindex="3" id="id_filhos" name="filhos">
+                            <option value="Selecione">Selecione</option>
+                            <option value="Nenhum" {% ifequal curriculo.filhos "Nenhum" %} selected {% endifequal %}>Nenhum</option>
+                            <option value="Um" {% ifequal curriculo.filhos "Um" %} selected {% endifequal %}>Um</option>
+                            <option value="Dois" {% ifequal curriculo.filhos "Dois" %} selected {% endifequal %}>Dois</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Data de Nascimento</label>
+                        <input type="text" class="ipt_dia" tabindex="4" id="id_dia" name="dia" value='{{curriculo.nascimento|date:"d"}}'/>
+                        <input type="text" class="ipt_mes" tabindex="5" id="id_mes" name="mes" value='{{curriculo.nascimento|date:"m"}}'/>
+                        <input type="text" class="ipt_ano" tabindex="6" id="id_ano" name="ano" value='{{curriculo.nascimento|date:"Y"}}'/>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>DDD/Telefone</label>
+                        <input type="text" class="ipt_ddd" tabindex="7" id="id_ddd_telefone" name="ddd_telefone" value='{{curriculo.telefone|slice:"0:4"}}'/>
+                        <input type="text" class="ipt_fone" tabindex="8" id="id_telefone" name="telefone" value='{{curriculo.telefone|slice:"4:"}}'/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>DDD/Celular</label>
+                        <input type="text" class="ipt_ddd" tabindex="9" id="id_ddd_celular" name="ddd_celular" value='{{curriculo.celular|slice:"0:4"}}'/>
+                        <input type="text" class="ipt_fone" tabindex="10" id="id_celular" name="celular" value='{{curriculo.celular|slice:"4:"}}'/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_4 alpha">
+	                    <label>Endereço</label>
+    	                 <input type="text" class="ipt_endereco" tabindex="11" id="id_endereco" name="endereco" value="{{curriculo.endereco}}"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Complemento</label>
+    	                <input type="text" class="ipt_complemento" tabindex="11" id="id_complemento" name="complemento" value="{{curriculo.complemento}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Bairro</label>
+                        <input type="text" class="ipt_bairro" tabindex="13" id="id_bairro" name="bairro" value="{{curriculo.bairro}}"/>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>Cidade</label>
+                        <select id="cidade" name="cidade" tabindex="15" >
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Estado</label>
+                        <select id="estado" name="estado" tabindex="14" >
+                            <option value="Selecione">Selecione</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+	                    <label>CPF</label>
+    	                <input type="text" class="ipt_cpf" tabindex="11" id="id_cpf" name="cpf" value="{{curriculo.cpf}}"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Pretensão Salarial</label>
+                        <select id="salario" name="salario" tabindex="14" >
+                            <option value="Selecione">Selecione</option>
+                            <option value="Entre R$ 800 e R$ 1200" {% ifequal curriculo.salario "Entre R$ 800 e R$ 1200" %} selected {% endifequal %}>Entre R$ 800 e R$ 1200</option>
+                           <option value="Entre R$ 1200 e R$ 1600" {% ifequal curriculo.salario "Entre R$ 1200 e R$ 1600" %} selected {% endifequal %}>Entre R$ 1200 e R$ 1600</option>  
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+            </div>
+                
+            <div class="grid_6 omega">
+            	<!-- Experiência Profissional / Última empresa -->
+            	<fieldset>
+                	<legend>Experiência Profissional / Última empresa</legend>
+                    <div class="grid_4 alpha">
+	                    <label>Empresa</label>
+    	                <input type="text" class="ipt_empresa" tabindex="11" id="id_ultima_empresa" name="ultima_empresa" value="{{curriculo.ultima_empresa}}" />
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Salário</label>
+    	                <input type="text" class="ipt_salario" tabindex="11" id="id_ultima_salario" name="ultima_salario" value="{{curriculo.ultima_salario}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Função</label>
+    	                <input type="text" class="ipt_funcao" tabindex="11" id="id_ultima_funcao" name="ultima_funcao" value="{{curriculo.ultima_funcao}}"/>
+                    </div>
+                    <div class="grid_4 omega">
+                        <label>Período</label>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_ultima_periodo_de" name="ultima_periodo_de" value="{{curriculo.ultima_periodo_de}}" />
+                        <span class="separaperiodo">a</span>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_ultima_periodo_a" name="ultima_periodo_a" value="{{curriculo.ultima_periodo_a}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Atividades desenvolvidas</label>
+                    <textarea tabindex="22" id="id_ultima_atividades_desenvolvidas" name="ultima_atividades_desenvolvidas">{{curriculo.ultima_atividades_desenvolvidas}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Motivo da saída</label>
+                    <textarea tabindex="22" id="id_ultima_motivo_saida" name="ultima_motivo_saida">{{curriculo.ultima_motivo_saida}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+            </div>
+            <div class="clear">&nbsp;</div>
+            
+            <div class="grid_6 alpha">
+                <!-- FORMAÇÃO - ENSINO MEDIO -->
+                <fieldset>
+                    <legend>Formação - Ensino Médio</legend>
+                    <div class="grid_4 alpha">
+                    	<label>Instituição</label>
+                        <input type="text" class="ipt_instmed" tabindex="20" id="id_medio_instituicao" name="medio_instituicao" value="{{curriculo.medio_instituicao}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- Se já tiver concluido fica "Ano de Conclusão" se for Em andamento fica"Previsão de Término" -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+	                    <label>Status</label>
+                        <select id="id_medio_status" name="medio_concluido" tabindex="14" onchange="javascript: medio_conclusao_validar();">
+                            <option value="Selecione">-</option>
+                            <option value="1" {% if curriculo.medio_concluido  %} selected="selected" {% endif %} selected="selected">Concluído</option>
+                            <option value="0" {% if not curriculo.medio_concluido %} selected {% endif %}>Em andamento</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha" id="div_medio_serie">
+                    	<label>Série</label>
+                        <input type="text" class="ipt_serie" tabindex="20" id="id_serie" name="medio_serie" value="{{curriculo.medio_serie}}"/>
+                    </div>
+                    <div class="grid_2">
+                    	<label id="label_medio_conclusao">Previsão de término</label>
+                        <input type="text" class="ipt_conclusao" tabindex="20" id="id_medio_conclusao" name="medio_conclusao" value="{{curriculo.medio_conclusao}}" />
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+                
+                <!-- FORMAÇÃO - GRADUACAO -->
+                <fieldset>
+                    <legend>Formação - Graduação</legend>
+                    <div class="grid_4 alpha">
+                    	<label>Instituição</label>
+                        <input type="text" class="ipt_instmed" tabindex="20" id="id_graduacao_instituicao" name="graduacao_instituicao" value="{{curriculo.graduacao_instituicao}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- Se já tiver concluido fica "Ano de Conclusão" se for Em andamento fica"Previsão de Término" -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+	                    <label>Status</label>
+                        <select id="id_graduacao_status" name="graduacao_concluido" tabindex="14" onchange="javascript: graduacao_conclusao_validar();">
+                            <option value="Selecione">-</option>
+                            <option value="1" {% ifequal curriculo.graduacao_concluido "Concluido" %} selected {% endifequal %}>Concluído</option>
+                            <option value="0" {% ifequal curriculo.graduacao_concluido "Em andamento" %} selected {% endifequal %}>Em andamento</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                    	<label>Curso</label>
+                        <input type="text" class="ipt_curso" tabindex="20" id="id_graduacao_curso" name="graduacao_curso"  value="{{curriculo.graduacao_curso}}"/>
+                    </div>
+                    <div class="grid_2" id="div_graduacao_semestre">
+                    	<label>Semestre</label>
+                        <input type="text" class="ipt_semestre" tabindex="20" id="id_graduacao_semestre" name="graduacao_semestre" value="{{curriculo.graduacao_semestre}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                    	<label id="label_graduacao_conclusao">Previsão de término</label>
+                        <input type="text" class="ipt_conclusao" tabindex="20" id="id_graduacao_conclusao" name="graduacao_conclusao" value="{{curriculo.graduacao_conclusao}}" />
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_6 alpha omega">
+                    	<label>Informações complementares</label>
+                        <textarea id="id_graduacao_complementar" name="graduacao_complementar">{{curriculo.graduacao_complementar}}</textarea>
+                    </div>
+                </fieldset>
+                
+                <!-- FORMAÇÃO - PÓS-GRADUACAO -->
+                <fieldset>
+                    <legend>Formação - Pós-graduação</legend>
+                    <div class="grid_4 alpha">
+                    	<label>Instituição</label>
+                        <input type="text" class="ipt_instmed" tabindex="20" id="id_pos_graduacao_instituicao" name="pos_graduacao_instituicao" value="{{curriculo.pos_graduacao_instituicao}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- Se já tiver concluido fica "Ano de Conclusão" se for Em andamento fica"Previsão de Término" -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+                    	<!-- ATENÇÃO SÍLVIO -->
+	                    <label>Status</label>
+                        <select id="id_posgraduacao_status" name="pos_graduacao_concluido" tabindex="14" onchange="javascript: posgraduacao_conclusao_validar();">
+                            <option value="Selecione">-</option>
+                            <option value="1" {% ifequal curriculo.pos_graduacao_concluido "Concluido" %} selected {% endifequal %}>Concluído</option>
+                            <option value="0" {% ifequal curriculo.pos_graduacao_concluido "Em andamento" %} selected {% endifequal %}>Em andamento</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                    	<label>Curso</label>
+                        <input type="text" class="ipt_curso" tabindex="20" id="id_pos_graduacao_curso" name="pos_graduacao_curso" value="{{curriculo.pos_graduacao_curso}}" />
+                    </div>
+                    <div class="grid_2" id="div_posgraduacao_semestre">
+                    	<label>Semestre</label>
+                        <input type="text" class="ipt_semestre" tabindex="20" id="id_pos_graduacao_semestre" name="pos_graduacao_semestre" value="{{curriculo.pos_graduacao_semestre}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                    	<label id="label_posgraduacao_conclusao">Previsão de término</label>
+                        <input type="text" class="ipt_conclusao" tabindex="20" id="id_pos_graduacao_conclusao" name="pos_graduacao_conclusao" value="{{curriculo.pos_graduacao_conclusao}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_6 alpha omega">
+                    	<label>Informações complementares</label>
+                        <textarea id="id_pos_graduacao_complementar" name="pos_graduacao_complementar">{{curriculo.pos_graduacao_complementar}}</textarea>
+                    </div>
+                </fieldset>
+                
+                <!-- FORMAÇÃO - CURSOS E PALESTRAS -->
+                <fieldset>
+                    <legend>Formação - Cursos e Palestras</legend>
+                    <div class="grid_6 alpha omega">
+                    	<label>Nome</label>
+                        <input type="text" class="ipt_nome" tabindex="20" id="id_curso_nome" name="curso_nome" value="{{curriculo.curso_nome}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                    	<label>Instituição</label>
+                        <input type="text" class="ipt_instcurso" tabindex="20" id="id_curso_instituicao" name="curso_instituicao" value="{{curriculo.curso_instituicao}}" />
+                    </div>
+                    <div class="grid_4 omega">
+                        <label>Período</label>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_curso_periodo_de" name="curso_periodo_de" value="{{curriculo.curso_periodo_de}}"/>
+                        <span class="separaperiodo">a</span>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_curso_periodo_a" name="curso_periodo_a" value="{{curriculo.curso_periodo_a}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_6 alpha omega">
+                    	<label>Informações complementares</label>
+                        <textarea id="id_curso_complementar" name="curso_complementar">{{curriculo.curso_complementar}}</textarea>
+                    </div>
+                </fieldset>
+                
+                <!-- Login / Senha -->
+
+            </div>
+            
+            <div class="grid_6 omega">
+                <!-- Experiência Profissional / Penúltima empresa -->
+                <fieldset>
+                	<legend>Experiência Profissional / Penúltima empresa</legend>
+                    <div class="grid_4 alpha">
+	                    <label>Empresa</label>
+    	                <input type="text" class="ipt_empresa" tabindex="11" id="id_penultima_empresa" name="penultima_empresa" value="{{curriculo.penultima_empresa}}"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Salário</label>
+    	                <input type="text" class="ipt_salario" tabindex="11" id="id_penultima_salario" name="penultima_salario" value="{{curriculo.penultima_salario}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Função</label>
+    	                <input type="text" class="ipt_funcao" tabindex="11" id="id_penultima_funcao" name="penultima_funcao" value="{{curriculo.penultima_funcao}}"/>
+                    </div>
+                    <div class="grid_4 omega">
+                        <label>Período</label>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_penultima_periodo_de" name="penultima_periodo_de" value="{{curriculo.penultima_periodo_de}}"/>
+                        <span class="separaperiodo">a</span>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_penultima_periodo_a" name="penultima_periodo_a" value="{{curriculo.penultima_periodo_a}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Atividades desenvolvidas</label>
+                    <textarea tabindex="22" id="id_penultima_atividades_desenvolvidas" name="penultima_atividades_desenvolvidas">{{curriculo.penultima_atividades_desenvolvidas}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Motivo da saída</label>
+                    <textarea tabindex="22" id="id_penultima_motivo_saida" name="penultima_motivo_saida">{{curriculo.penultima_motivo_saida}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+                <Br /><br />
+            	<!-- Experiência Profissional / Antepenúltima empresa -->
+                <fieldset>
+                	<legend>Experiência Profissional / Antepenúltima empresa</legend>
+                    <div class="grid_4 alpha">
+	                    <label>Empresa</label>
+    	                <input type="text" class="ipt_empresa" tabindex="11" id="id_antepenultima_empresa" name="antepenultima_empresa" value="{{curriculo.antepenultima_empresa}}"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Salário</label>
+    	                <input type="text" class="ipt_salario" tabindex="11" id="id_antepenultima_salario" name="antepenultima_salario" value="{{curriculo.antepenultima_salario}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Função</label>
+    	                <input type="text" class="ipt_funcao" tabindex="11" id="id_antepenultima_funcao" name="antepenultima_funcao" value="{{curriculo.antepenultima_funcao}}" />
+                    </div>
+                    <div class="grid_4 omega">
+                        <label>Período</label>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_antepenultima_periodo_de" name="antepenultima_periodo_de" value="{{curriculo.antepenultima_periodo_de}}"/>
+                        <span class="separaperiodo">a</span>
+    	                <input type="text" class="ipt_periodo" tabindex="11" id="id_antepenultima_periodo_a" name="antepenultima_periodo_a" value="{{curriculo.antepenultima_periodo_a}}"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Atividades desenvolvidas</label>
+                    <textarea tabindex="22" id="id_antepenultima_atividades_desenvolvidas" name="antepenultima_atividades_desenvolvidas">{{curriculo.antepenultima_atividades_desenvolvidas}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Motivo da saída</label>
+                    <textarea tabindex="22" id="id_antepenultima_motivo_saida" name="antepenultima_motivo_saida" >{{curriculo.antepenultima_motivo_saida}}</textarea>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+                    
+                <!-- Mini-currículo -->
+                <fieldset>
+                    <legend>Mini-currículo</legend>
+                    <textarea class="minicv" tabindex="23" id="id_minicurriculo" name="minicurriculo">{{curriculo.minicurriculo}}</textarea>
+                    <br />
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+                
+                <input type="checkbox" class="cbx" tabindex="24" checked /> <label class="lbl_cbx">Desejo receber novidades da Microsol</label>
+                <input type="hidden" name="usuario" value="{{curriculo.usuario.id}}" />
+                <input type="hidden" name="codigo_cadastro" value="{{curriculo.codigo_cadastro}}"
+                <a href="javascript: enviar_curriculo(); void(0);" class="btn btn-enviar fr" title="Enviar" tabindex="25">Enviar</a>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

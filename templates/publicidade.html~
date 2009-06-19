@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Mídia</h2>
+        <ul>
+            <li><a href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a class="sub-ativo" href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="pub-anuncios" class="grid_12">
+    	<h3>Anúncios de Revista</h3>
+        <ul>
+             {% for publicidade in publicidades %}
+                 {% if publicidade.imagem %}
+                    <li><a href="{{MEDIA_URL}}{{publicidade.imagem}}" class="fancy_trigger" title="Teste"><img src="{{MEDIA_URL}}{{publicidade.imagem}}" width="100" height="150" />{{publicidade.titulo}}</a></li>
+                 {% endif %}
+             {% endfor %}        	
+        </ul>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="pub-videos" class="grid_12">
+   	  <h3>Vídeos</h3>
+          <ul>
+              {% for publicidade in publicidades %}
+                  {% if publicidade.video %}
+                      <li>{{publicidade.video|safe}}</li>
+                  {% endif %}
+              {% endfor %}            	
+         </ul>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>{{pagina.titulo}}</h2>
+    </div>
+    <div class="clr">&nbsp;</div>
+    {% for loja in lojas %}
+        <div id="descontinuado" class="grid_3 alpha">
+            <img src="{{loja.padrao_thumbnail}}" alt="{{loja.titulo}}" />
+            <ul>
+                <li>{{loja.titulo}}</li>
+                <li><a href="{{loja.link}}" title="Link">{{loja.link}}</a></li>
+                <li>{{loja.email}}</li>
+            </ul>
+        </div>
+        {% if forloop.counter|divisibleby:"4" %}
+             <div class="clear">&nbsp;</div>
+        {% endif %}
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+{% endblock %}

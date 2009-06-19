@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Manuais</h2>
+    </div>
+    <div class="clr">&nbsp;</div>
+    {% for categoria in categorias %}
+    <h3>{{categoria.nome}}</h3>
+    {% for produto in categoria.produto_categoria.all %}
+        <div id="descontinuado" class="grid_2 alpha">
+            <img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" />
+            {% ifequal categoria.nome "Produtos Descontinuados" %}<h4>{{produto.nome}}</h4> {% endifequal %}  
+            {% if produto.manual or produto.catalogo %}
+            <ul>
+                {% if produto.manual %}<li><a href="{{MEDIA_URL}}{{produto.manual}}" title="Manual">Manual</a></li>{% endif %}
+            </ul>
+            {% endif %}
+        </div>
+        {% if forloop.counter|divisibleby:"6" %}
+             <div class="clear">&nbsp;</div>
+        {% endif %}
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+{% endblock %}

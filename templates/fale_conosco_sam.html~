@@ -1,0 +1,154 @@
+{% extends  "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/cidade_estados.js" ></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-maskedinput.js" ></script>
+    <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+        window.onload = function() {
+new dgCidadesEstados(document.getElementById('id_estado'), document.getElementById('id_cidade'), true);
+}
+    $(document).ready(function(){
+        $("#id_ddd").mask("(99)");
+        $("#id_telefone").mask("9999-9999");
+    });
+
+    function enviar_sam(){
+            if (validarNome($("#id_nome").val()) == false){
+                $("#erros").html("Preencha o campo nome corretamente."); 
+            }
+            else if (validarEmail($("#id_email").val()) == false){
+                $("#erros").html("Preencha o campo email corretamente.");
+            }      
+            else if ($("#id_ddd").val() == "" || $("#id_ddd").val() == "(__)"){
+                $("#erros").html("Informe o DDD do seu telefone.");
+            }
+            else if ($("#id_telefone").val() == "" || $("#id_telefone").val() == "____-____"){
+                $("#erros").html("Informe o seu telefone.");
+            }
+            else if ($("#id_estado").val() == ""){
+                $("#erros").html("Informe seu estado.");
+            }
+            else if ($("#id_cidade").val() == ""){
+                $("#erros").html("Informe sua cidade.");
+            }
+            else if ($("#id_mensagem").val() == ""){
+                $("#erros").html("Informe a mensagem.");
+            }    
+            else {
+                $("#id_form_sam").submit();
+            }
+        }
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Fale Conosco</h2>
+        <ul>
+            <li><a class="sub-ativo" href="/fale_conosco/sam/" title="Serviço de Atendimento Microsol">Serviço de Atendimento Microsol</a></li>
+            <li><a href="/fale_conosco/contato/"  title="Contato">Contato</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="faleconosco" class="grid_12">
+    	{{pagina.texto|safe}}
+        <form action="." id="id_form_sam" method="POST">
+        	<fieldset>
+                <legend>Contato</legend>
+                
+                <div class="grid_6 alpha">
+                	<label>Nome *</label>
+                    <input type="text" class="ipt_faleconosco" id="id_nome" name="nome"/>
+                    <br />
+                    
+                    <div class="grid_4 alpha">
+                        <label>E-mail *</label>
+                        <input type="text" class="ipt_email" id="id_email" name="email" />
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>DDD/Telefone *</label>
+                        <input type="text" class="ipt_ddd" id="id_ddd" name="ddd"/>
+                        <input type="text" class="ipt_fone" id="id_telefone" name="telefone"/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Estado *</label>
+                        <select id="id_estado" name="estado">
+                            <option value="Selecione">Selecione</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AM">AM</option>
+                            <option value="AP">AP</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MG">MG</option>
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="PR">PR</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="RS">RS</option>
+                            <option value="SC">SC</option>
+                            <option value="SE">SE</option>
+                            <option value="SP">SP</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>Cidade *</label>
+                        <select id="id_cidade" name="cidade">
+                            <option >Selecione</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                    	<label>Sexo</label>
+                        <input type="radio" class="rdo" name="sexo" id="sexo_m" value="Masculino"/> <label class="lbl_rdo" for="sexo_m">Masculino</label><br clear="all" />
+                        <input type="radio" class="rdo" name="sexo" id="sexo_f" value="Feminino"/> <label class="lbl_rdo" for="sexo_f">Feminino</label><br clear="all" />
+                    </div>
+                    
+                    <div class="grid_4 omega">
+                    	<label>Tipo de contato</label>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <input type="radio" class="rdo" name="tipo" id="tipo_elo" value="Elogio"/> <label for="tipo_elo" class="lbl_rdo">Elogio</label><br clear="all" />
+                        <input type="radio" class="rdo" name="tipo" id="tipo_rec" value="Reclamação"/> <label for="tipo_rec" class="lbl_rdo">Reclamação</label><br clear="all" />
+                    </div>
+                    <div class="grid_2 omega">
+                        <input type="radio" class="rdo" name="tipo" id="tipo_sug" value="Sugestão"/> <label for="tipo_sug" class="lbl_rdo">Sugestão</label><br clear="all" />
+                        <input type="radio" class="rdo" name="tipo" id="tipo_inf" value="Pedido de informação"/> <label for="tipo_inf" class="lbl_rdo">Pedido de informação</label><br clear="all" />
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                </div>
+                
+                <div class="grid_6 omega">
+                    <label>Descrição *</label>
+                    <textarea class="sam" id="id_mensagem" name="mensagem"></textarea>
+                    <br />
+                    
+                    <input type="checkbox" class="cbx" checked /> <label class="lbl_cbx">Desejo receber novidades da Microsol</label>
+
+                    <a href="javascript: enviar_sam(); void(0);" class="btn btn-enviar fr" title="Enviar">Enviar</a>
+                </div>
+                <div class="clear">&nbsp;</div><br />
+                <p><em>* Campos obrigatórios</em></p>
+            </label>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

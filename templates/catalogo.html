@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script language="javascript">AC_FL_RunContent = 0;</script>
+    <script src="{{MEDIA_URL}}js/AC_RunActiveContent.js" language="javascript"></script>
+{% endblock %}
+{% block "conteudo" %}
+    <div id="categoria" class="grid_12">
+        <h2>Catálogos</h2>
+        <ul>
+            {% for catalogo in pagina.catalogos_ordenados %}
+                <li><a href="/catalogos/{{catalogo.nome_slug}}/" title="Manuais">{{catalogo.nome}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="catalogos" class="grid_12">
+    	<script language="javascript">
+	if (AC_FL_RunContent == 0) {
+		alert("This page requires AC_RunActiveContent.js.");
+	} else {
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '750',
+			'height', '600',
+			'src', 'http://media.indexvirtual.com/microsol/swf/catalogo',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'opaque',
+			'devicefont', 'false',
+			'id', 'catalogo',
+			'bgcolor', '#ffffff',
+			'name', 'http://media.indexvirtual.com/microsol/swf/catalogo',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','always',
+			'movie', 'http://media.indexvirtual.com/microsol/swf/catalogo',
+			'FlashVars', 'imgURL={{MEDIA_URL}}xml/{{xml}}',
+			'salign', ''
+			); //end AC code
+	}
+    </script>
+    <noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="750" height="600" id="catalogo" align="middle">
+	<param name="allowScriptAccess" value="always" />
+	<param name="FlashVars" value="imgURL={{MEDIA_URL}}xml/{{pagina.catalogo_destaque.nome|slugify}}.xml" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="{{MEDIA_URL}}swf/catalogo.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="{{MEDIA_URL}}swf/catalogo.swf" quality="high" bgcolor="#ffffff" width="750" height="600" name="catalogo" align="middle" allowScriptAccess="always" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+    </noscript>
+    </div>
+    
+    <div class="clear">&nbsp;</div>
+    
+    
+{% endblock %}

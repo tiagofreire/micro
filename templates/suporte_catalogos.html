@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Catálogos</h2>
+        <ul>
+            <li><a href="/suporte/manuais/" title="Manuais">Manuais</a></li>
+            <li><a href="/suporte/catalogos/" title="Catálogos">Catálogos</a></li>
+            <li><a href="/a_microsol_indica/" title="Aplicativos">A Microsol Indica</a></li>
+            <li><a href="/suporte/perguntas_frequentes/" title="Aplicativos">Perguntas Frequentes</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    {% for categoria in categorias %}
+    <h3>{{categoria.nome}}</h3>
+    {% for produto in categoria.produto_categoria.all %}
+        <div id="descontinuado" class="grid_2 alpha">
+            <img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" />
+            {% ifequal categoria.nome "Produtos Descontinuados" %}<h4>{{produto.nome}}</h4> {% endifequal %}  
+            {% if produto.manual or produto.catalogo %}
+            <ul>
+                {% if produto.catalogo %}<li><a href="{{MEDIA_URL}}{{produto.catalogo}}" title="Catalogo">Catálogo</a></li>{% endif %}
+            </ul>
+            {% endif %}
+        </div>
+        {% if forloop.counter|divisibleby:"6" %}
+             <div class="clear">&nbsp;</div>
+        {% endif %}
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+{% endblock %}

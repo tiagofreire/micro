@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Notícias</h2>
+        <ul>
+            <li><a href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a class="sub-ativo" href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+
+    {% for noticia in noticias.object_list %}
+        <div id="noticia" class="grid_12">
+        <div class="data">
+            <span class="dia">{{noticia.data|date:"d"}}</span>
+            <span class="mes">{{noticia.data|date:"M"}}</span>
+            <span class="ano">{{noticia.data|date:"Y"}}</span>
+		</div>
+		<h3>{{noticia.titulo}}</h3>
+        <div class="clear">&nbsp;</div>
+        {{noticia.texto|safe|truncatewords_html:256}}
+        <a href="/midia/noticia/{{noticia.titulo_slug}}/" class="leia-mais" title="Leia mais">Leia mais</a>
+	</div> 
+    {% endfor %} 
+       
+    <div id="paginacao" class="grid_12">
+    {% if paginar %}
+    	<h2>Notícias anteriores</h2>
+        {% for pagina in paginas %}
+            {% ifequal forloop.counter pagina_atual %}  
+                <span class="current">{{pagina}}</span>
+            {% else %} 
+                <a href="/midia/noticias/{{pagina}}/" title="{{pagina}}">{{pagina}}</a>
+            {% endifequal %}
+        {% endfor %}
+        <span class="extend">...</span>
+        <a href="/midia/noticias/{{pagina}}/" title="10">{{paginas|length}}</a>
+    {% endif %}
+    </div>
+{% endblock %}

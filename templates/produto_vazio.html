@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+<div id="id_container">
+    <div id="categoria" class="grid_12">
+        <h2>{{categoria.nome}}</h2>
+        
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_4 alpha"></div>
+    <div id="produto" class="grid_8 omega">
+        <div class="grid_6 prefix_1 suffix_1">        
+            <div id="id_conteudo_produto">
+                Nenhum produto cadastrado nesta categoria.
+            </div>
+        </div>
+    </div>
+
+</div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

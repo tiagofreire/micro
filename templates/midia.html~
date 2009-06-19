@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>{{pagina.titulo}}</h2>
+        <ul>
+            <li><a href="#" title="Informativo">Informativo</a></li>
+            <li><a href="#" title="Notícias">Notícias</a></li>
+            <li><a href="#" title="Publicidade">Publicidade</a></li>
+            <li><a href="#" title="Hotsites">Hotsites</a></li>
+            <li><a href="#" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}img/img_dtq_int_placeholder.jpg" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        {{pagina.texto|safe}}
+        
+        <div id="chamada-int" class="grid_2 alpha">
+        	<a href="#" title="Publicidade">
+                <h3>Publicidade</h3>
+                <p>{{pagina.texto_publicidade}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2">
+        	<a href="#" title="Hotsites">
+                <h3>Hotsites</h3>
+                <p>{{pagina.texto_hotsites}}</p>
+            </a>
+        </div>
+        <div id="chamada-int" class="grid_2 omega">
+        	<a href="#" title="Manual da Marca">
+                <h3>Manual da Marca</h3>
+                <p>{{pagina.texto_manual_da_marca}}</p>
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="outros-links" class="grid_12">
+    	<h2>Últimas Notícias</h2>
+        <!-- LISTA COM AS 5 ULTIMAS NOTÍCIAS -->
+        <div class="grid_6 alpha">
+            <ul>
+               {% for noticia in noticias|slice:":5" %}
+                   <li><a href="#" title="">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- LISTA COM AS OUTRAS 5 ULTIMAS NOTÍCIAS COM OFFSET 5 -->
+        <div class="grid_6 omega">
+            <ul>
+                {% for noticia in noticias|slice:"5:" %}
+                   <li><a href="#" title="">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="http://gadgets.virtualtarget.com.br/index.dma/OptIn"></script>
+    <script type="text/javascript">
+        VTG.FormId = "informativo";
+      VTG.Key="I7ul1Zn88c7i2gwcw0R5LlaUnipBXPEWvkUIHQLNId1TepaIwOzuCQQfMsKpm1eDmiLhjXRwstpfXguEaurtGWzsrDihFp068pMIn9UhDGd7pRtnkEpeMm6fSmFHoBK5XfgThmEKfcGhIx4yJ1JzkTb2r9VlRnjXMPCIctZYHQ=";
+        VTG.Callback = FuncaoCallback;
+         
+        function FuncaoCallback(codigo, mensagem){
+            if(parseInt(codigo) == 1){
+                alert("Sucesso");
+                alert("Mensagem") ;
+            }
+            else {
+                alert("Erro"); 
+                alert(codigo);
+            }
+        }
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Mídia</h2>
+        <ul>
+            <li><a class="sub-ativo" href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="img-chamada" class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        <p>{{pagina.texto|safe}}</p>
+        <form id="informativo" class="informativo_int">
+            <label>Seu nome</label> <input type="text" vtid="NOME" value="Seu nome" class="ipt_informativo" name="nome" id="nome"/>
+            <label>Seu e-mail</label> <input type="text" vtid="EMAIL" value="Seu e-mail" class="ipt_informativo" name="email" id="email" />
+            <a href="javascript: javascript:VTG.VTG_Submit(); void(0);" title="Enviar" class="btn btn-enviar fr" >Enviar</a>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="outros-links" class="grid_12">
+    	<h2>Últimas Notícias</h2>
+        <!-- LISTA COM AS 5 ULTIMAS NOTÍCIAS -->
+        <div class="grid_6 alpha">
+            <ul>
+               {% for noticia in noticias|slice:":5" %}
+                   <li><a href="/midia/noticia/{{noticia.titulo_slug}}/" title="{{noticia.titulo}}">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- LISTA COM AS OUTRAS 5 ULTIMAS NOTÍCIAS COM OFFSET 5 -->
+        <div class="grid_6 omega">
+            <ul>
+                {% for noticia in noticias|slice:"5:" %}
+                   <li><a href="/midia/noticia/{{noticia.titulo_slug}}/" title="{{noticia.titulo}}">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

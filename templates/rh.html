@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+    <script type="text/javascript">
+        function logar(){
+            if ($("#login").val() == ""){
+                alert("Insira seu login"); 
+            }
+            else if ($("#senha").val() == ""){
+                alert("Insira sua senha"); 
+            }
+            else {
+                $("#rh-login").submit(); 
+            }
+        } 
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Oportunidades</h2>
+        <ul>
+            <li><a href="javascript: $('#login').focus(); void(0);" title="Já possuo currículo">Já possuo currículo</a></li>
+            <li><a href="/rh/curriculo/" title="Primeiro acesso">Primeiro acesso</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="img-chamada" class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}{{pagina.imagem}}" alt="Recursos Humanos"  />
+    </div>
+
+    <div id="chamada" class="grid_7 omega">
+        <p>{{pagina.texto|safe}}</p>
+        
+        <div id="chamada-int" class="grid_4 alpha">
+        	<h3>Já possuo currículo cadastrado</h3>
+                {% if not curriculo %}
+                    <form id="rh-login" class="rh-int" action="/rh/" method="POST">
+                        <label>Seu login</label> <input type="text" value="Seu login" class="ipt-rh-login" name="usuario" id="login" />
+                        <label>Sua senha</label> <input type="password" value="Sua senha" class="ipt-rh-login" name="senha" id="senha" />
+                        <a href="javascript: javascript:logar(); void(0);" title="Enviar" class="btn btn-enviar fr" >Login</a>
+                    </form>
+                {% else %}
+                    <a href="/rh/curriculo/{{curriculo.codigo_cadastro}}/">Edite seu curriculo.</a>
+                    <a href="/rh/logout/">Sair.</a>  
+                {% endif %}
+        </div>
+        
+        <div id="chamada-int" class="grid_2 omega">
+                {% if not curriculo %}
+                    <a href="/rh/curriculo/" title="Primeiro acesso">
+                {% else %}
+                    <a href="/rh/curriculo/{{curriculo.codigo_cadastro}}/" title="Primeiro acesso">
+                {% endif %}
+                <h3>Primeiro acesso</h3>
+                <p>{{pagina.texto_primeiro_acesso|safe}}</p>
+                 
+            </a>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

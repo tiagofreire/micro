@@ -1,0 +1,14 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <ul>
+    {% for ano in anos %}
+        <li>ARQUIVO {{ano.ano}}</li>
+        {% for chave, valor in ano.meses.items %}
+             <li><a href="#">{{chave}} ({{valor|length}})</a></li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+    </body>  
+</html>

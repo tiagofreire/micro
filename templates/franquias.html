@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+<script 
+src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAAp_um5-PcIXM-5riRNaVzhRfS9ISia71P3Kqh6i5MCfhs9RqoBRJ0Uw9N1t9pRWi7f1-jZkIXLpBVA" 
+type="text/javascript"></script>
+<script type="text/javascript">
+	var gdir;
+    var geocoder = null;
+    var addressMarker;
+	var pontoLocal;
+	var cli_address = '-3.7365979,-38.4905471';
+	
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("chamada"));
+        map.setCenter(new GLatLng(-3.7365979, -38.4905471), 3);
+        map.addControl(new GOverviewMapControl());
+        map.setUIToDefault();
+		
+		geocoder = new GClientGeocoder();
+		directionsPanel = document.getElementById("route");
+		gdir = new GDirections(map,directionsPanel);
+		setDirections('',cli_address, 'pt-BR');
+		
+		setTimeout("showAddress('"+cli_address+"');",1000);
+
+        var baseIcon = new GIcon(G_DEFAULT_ICON);
+        baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+        baseIcon.iconSize = new GSize(20, 34);
+        baseIcon.shadowSize = new GSize(37, 34);
+        baseIcon.iconAnchor = new GPoint(9, 34);
+        baseIcon.infoWindowAnchor = new GPoint(9, 2);
+        function createMarker(point, index) {
+          var cont = index.split(',');
+          var letter = String.fromCharCode("A".charCodeAt(0) + cont[2]);
+          var letteredIcon = new GIcon(baseIcon);
+          letteredIcon.image = "http://127.0.0.1:8000/site_media/img/micro-icon.png";
+
+          markerOptions = { icon:letteredIcon };
+          var marker = new GMarker(point, markerOptions);
+
+          GEvent.addListener(marker, "click", function() {
+            marker.openInfoWindowHtml("<img src='http://127.0.0.1:8000/site_media/"+cont[1]+"' height='50' align='left' />"+cont[0]+"<br />teste");
+          });
+          return marker;
+        }
+
+        var bounds = map.getBounds();
+        var southWest = bounds.getSouthWest();
+        var northEast = bounds.getNorthEast();
+        var lngSpan = northEast.lng() - southWest.lng();
+        var latSpan = northEast.lat() - southWest.lat();
+    	{% for franquia in franquias %}
+        	var latlng = new GLatLng({{franquia.pegar_localizacao}});
+        	map.addOverlay(createMarker(latlng, "{{franquia.nome}},{{franquia.logo}},{{forloop.counter}}"));
+        {% endfor %}
+    
+      }
+    }
+	function load() {
+		if (GBrowserIsCompatible())
+		{
+			map = new GMap2(document.getElementById("chamada"));
+        	map.setCenter(new GLatLng(-3.7365979, -38.4905471), 3);
+			map.addControl(new GOverviewMapControl());
+	        map.setUIToDefault();	
+			geocoder = new GClientGeocoder();
+			directionsPanel = document.getElementById("route");
+			gdir = new GDirections(map,directionsPanel);
+			setDirections('',cli_address, 'pt-BR');
+			setTimeout("showAddress('"+cli_address+"');",1000);
+		}
+	}
+	
+	showMaps=1;
+
+	function showAddress(address) {
+		if (geocoder) {
+			geocoder.getLatLng(
+			address,
+				function(point) {
+					if (!point) {
+						alert(address + " - Endereço não encontrado!");
+					} else {
+						map.setCenter(point, 17);
+						var cliIcon = new GIcon(G_DEFAULT_ICON);
+							cliIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markers/red/blank.png";
+						map.addOverlay(new GMarker(map.getCenter(),{icon:cliIcon}));
+					}
+				}
+			);
+		}
+	}
+	function setDirections(fromAddress, toAddress, locale) {
+	  gdir.load("from: " + fromAddress + " to: " + toAddress,
+				{ "locale": locale });
+	}
+    </script>
+
+
+	<div id="categoria" class="grid_12">
+        <h2>Onde Comprar</h2>
+        <ul>
+            <li><a href="#" title="Franquias">Franquias</a></li>
+            <li><a href="#" title="Assistência Técnica">Assistência Técnica</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    <div class="grid_5 alpha">
+    	<img src="{{MEDIA_URL}}img/img_onde.jpg" alt="Mídia"  />
+
+    </div>
+    <input id="de_tal" type="text" name="de_tal" value="" style="width:30%" />
+    <select id="para_tal" name="para_tal">
+    	<option>Selecione uma revenda</option>
+    	{% for franquia in franquias %}
+    		<option value="{{franquia.pegar_localizacao}}">{{franquia.nome}}</option>
+    	{% endfor%}
+    </select>
+          &nbsp;
+          <input type="button" value="Ok" style="width:30px;"  onclick="JavaScript:setDirections(document.getElementById('de_tal').value,document.getElementById('para_tal').value,'pt_BR');">
+         
+    <div id="chamada" class="grid_7 omega" style="height:400px">
+   
+    </div>
+    <div class="clr">&nbsp;</div>
+    <div id="route" style="width: 610px"></div>
+    <script type="text/javascript">if(showMaps==1)window.onload=initialize;</script>
+    
+    <div class="clear">&nbsp;</div>
+
+
+
+{% endblock %}

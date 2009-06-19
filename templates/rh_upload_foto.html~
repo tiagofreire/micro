@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery_form.js"></script>
+    <script type="text/javascript">
+        function enviar_foto(){
+            $("#div_alerta").html("Enviando... aguarde por favor.");
+            $("#id_upload_foto").ajaxSubmit({
+                success: function(responseText, responseStatus){
+                    $("#id_container").fadeOut('slow', function(){
+                        $("#id_container").html(responseText);
+                        $("#id_container").fadeIn('slow'); 
+                    });
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="div_alerta"></div>
+    <div id="id_container">
+        <form name="upload_foto" id="id_upload_foto" action="/rh/adicionar_foto/{{curriculo.codigo_cadastro}}/" method="POST" enctype="multipart/form-data">
+            {{formulario.as_p}}
+    	    <input type="submit" name="enviar" id="id_enviar" value="Enviar" />
+        </form>
+            <input type="button" name="cancelar" id="id_cancelar" value="Cancelar" onclick="javascript: cancelar();"/>
+    </div>
+</body>
+</html>

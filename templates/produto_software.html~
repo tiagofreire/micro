@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+   <link rel="stylesheet" href="{{MEDIA_URL}}css/fancy.css" type="text/css" media="screen">
+
+
+    <script type="text/javascript">
+	  
+
+
+        function exibir_conteudo(id_conteudo, id_item){            
+            $('.sub-ativo').removeClass('sub-ativo');
+            $('#' + id_item).addClass('sub-ativo');
+            $("#id_conteudo_produto").fadeOut('slow', function(){
+                var html = "";
+                html = $("#" + id_conteudo).html();
+                $("#id_conteudo_produto").html(html);
+                $("#id_conteudo_produto").fadeIn('slow', function(){
+                    $(".fancy_trigger").fancybox();
+                });
+                 
+            });
+        }
+    </script>  
+{% endblock %}
+{% block "conteudo" %}
+<div id="id_container">
+    <div id="categoria" class="grid_12">
+        <h2>{{categoria.nome}}</h2>
+        <ul>
+            <li><a id="item_nome_produto" href="javascript: exibir_conteudo('id_descricao', 'item_nome_produto');" title="">{{produto.nome|safe}}</a></li>
+            <li><a id="item_graficos" href="javascript: exibir_conteudo('id_graficos', 'item_graficos');" title="">Gráficos</a></li>
+            {% if produto.descricao %}<li><a id="item_descricao" href="javascript: exibir_conteudo('id_descricao', 'item_descricao');" title="" >Descrição</a></li>{% endif %}
+            {% if produto.notificacao %}<li><a id="item_notificacao" href="javascript: exibir_conteudo('id_notificacao', 'item_notificacao');" title="">Notificação</a></li>{% endif %}
+            {% if produto.comandos %}<li><a id="item_comandos" href="javascript: exibir_conteudo('id_comandos', 'item_comandos');" title="">Comandos</a></li>{% endif %}
+            {% if produto.monitoramento %}<li><a id="item_monitoramento" href="javascript: exibir_conteudo('id_monitoramento', 'item_monitoramento');" title="">Monitoramento</a></li>{% endif %}
+            {% if produto.historico %}<li><a id="item_historico" href="javascript: exibir_conteudo('id_historico', 'item_historico');" title="">Histórico</a></li>{% endif %} 
+            {% if produto.manual %}<li><a id="item_manual" href="javascript: exibir_conteudo('id_manual', 'item_manual');" title="">Manual</a></li>{% endif %}  
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_4 alpha"><img src="{{MEDIA_URL}}{{produto.imagem}}" alt="{{produto.nome}}"  /></div>
+    <div id="produto" class="grid_8 omega">
+        <div class="grid_6 prefix_1 suffix_1">
+            <h3><img src="{{MEDIA_URL}}{{produto_destaque.logo}}" width="107" height="16" alt="{{produto.nome}}" /></h3>
+            <div id="id_conteudo_produto">
+                {{produto.descricao|safe}}
+            </div>
+        </div>
+    </div>
+
+<!-- container para informações do produto -->
+<div id="id_descricao" style="display: none;">
+    {{produto.descricao|safe}}
+</div>
+<div id="id_graficos" style="display: none;">
+    {{produto.graficos|safe}}
+    <ul id="galeria_grid6">
+        {% for foto in produto.galeria.fotos.all %}
+	    <li>
+                <a href="{{MEDIA_URL}}{{foto.arquivo}}" class="fancy_trigger" title="Teste">
+                    <img src="{% pegar_miniatura foto 'thumbnail_sgm' %}" alt="{{foto.nome}}" class="foto_galeria" />
+                </a>
+           </li> 
+        {% endfor %}
+    </ul>
+</div>
+<div id="id_notificacao" style="display: none;">
+    {{produto.notificacao|safe}}
+</div>
+<div id="id_comandos" style="display: none;">
+    {{produto.comandos|safe}}
+</div>
+<div id="id_monitoramento" style="display: none;">
+    {{produto.monitoramento|safe}}
+</div>
+<div id="id_historico" style="display: none;">
+    {{produto.historico|safe}}
+</div>
+<div id="id_manual" style="display: none;">
+    <a href="{{MEDIA_URL}}{{produto.manual}}">Manual</a>
+</div>
+<!-- Fim dos containers -->
+
+</div>
+    <div class="clear">&nbsp;</div>
+
+
+{% endblock %}

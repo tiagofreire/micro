@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript">
+        function exibir_conteudo(id_conteudo, id_item){
+            $('.sub-ativo').removeClass('sub-ativo');
+            $('#' + id_item).addClass('sub-ativo');
+            $("#id_conteudo_produto").fadeOut('slow', function(){
+                var html = "";
+                html = $("#" + id_conteudo).html();
+                $("#id_conteudo_produto").html(html);
+                $("#id_conteudo_produto").fadeIn('slow');
+            });
+        }
+    </script>  
+{% endblock %}
+{% block "conteudo" %}
+<div id="id_container">
+    <div id="categoria" class="grid_12">
+        <h2>{{categoria.nome}}</h2>
+
+    </div>
+    <div class="clr">&nbsp;</div>
+    <div id="outros" class="grid_12">
+    	<h2>Até 800VA</h2>
+        <ul>
+            {% for produto in faixa_1 %}
+                <li><a href="/produtos/{{categoria.nome_slug}}/{{produto.nome_slug}}/" title="{{produto.nome}}"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>    
+   <div class="clr">&nbsp;</div>
+    <div id="outros" class="grid_12">
+    	<h2>801 VA à 1400KVA</h2>
+        <ul>
+            {% for produto in faixa_2 %}
+                <li><a href="/produtos/{{categoria.nome_slug}}/{{produto.nome_slug}}/" title="{{produto.nome}}"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>  
+
+    <div class="clr">&nbsp;</div>
+    <div id="outros" class="grid_12">
+    	<h2>1401 KVA à 2000KVA</h2>
+        <ul>
+            {% for produto in faixa_3 %}
+                <li><a href="/produtos/{{categoria.nome_slug}}/{{produto.nome_slug}}/" title="{{produto.nome}}"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>   
+
+    <div class="clr">&nbsp;</div>
+    <div id="outros" class="grid_12">
+    	<h2>2001 KVA à 10000KVA</h2>
+        <ul>
+            {% for produto in faixa_4 %}
+                <li><a href="/produtos/{{categoria.nome_slug}}/{{produto.nome_slug}}/" title="{{produto.nome}}"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>     
+
+
+    <div class="grid_4 alpha"><img src="{{MEDIA_URL}}{{produto.imagem}}" alt="{{produto.nome}}"  /></div>
+    <div id="produto" class="grid_8 omega">
+        
+    </div>
+
+
+
+</div>
+    <div class="clear">&nbsp;</div>
+
+{% endblock %}

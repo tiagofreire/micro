@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="{{MEDIA_URL}}css/jcrop.css" type="text/css" />
+<link rel="stylesheet" href="{{MEDIA_URL}}css/jquery-ui-custom.css" type="text/css" media="screen" >
+
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jcrop.js" ></script>
+     <script type="text/javascript">
+	     $(document).ready(function(){
+			 $("#tabContainer").tabs({ fx: { opacity: 'toggle'} });
+			 $("#resizable").resizable({
+			     alsoResize: '#imagemRedimensionar', 
+				 resize: function(event, ui){
+				     $("#larguraRedimensionar").val(ui.size['width']);
+					 $("#alturaRedimensionar").val(ui.size['height']);
+				 }
+			 });
+		});	
+	</script> 
+    <script type="text/javascript">
+	
+var crop;	
+$(window).load(function(){
+    
+    crop = $.Jcrop('#cropBox', {
+        onSelect: mostrarDimensoesCrop,
+	    onChange: mostrarDimensoesCrop
+        });
+});
+			  
+function mostrarDimensoesCrop(c) {
+   $('#alturaField').val(c.h);
+   $('#larguraField').val(c.w);
+   $('#xInicialField').val(c.x);
+   $('#xFinalField').val(c.x2);
+   $('#yInicialField').val(c.y);
+   $('#yFinalField').val(c.y2);
+   showPreview(c);
+}
+	
+function showPreview(coords) {
+    var rx = 100 / coords.w;
+    var ry = 100 / coords.h;
+    $('#cropPreview').css({
+	    width: Math.round(rx * "{{foto.arquivo.width}}") + 'px',
+	    height: Math.round(ry * "{{foto.arquivo.height}}") + 'px',
+	    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+	    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+    });	
+}
+	
+function setarCoordenadas() {
+   if (crop == null) {
+      alert("Faça uma seleção inicial");
+   }
+   else {
+      novaCoordenada = [$("#xInicialField").val(), $("#yInicialField").val(), $("#xFinalField").val(), $("#yFinalField").val()];
+      crop.animateTo(novaCoordenada);
+   }	    
+}
+    </script>
+</head>
+<body>
+
+<div id="tabContainer" class="Flora">
+     <ul>
+         <li><a href="#crop"><span>Crop</span></a></li>
+         <li><a href="#miniaturas"><span>Miniaturas</span></a></li>
+         <li><a href="#redimensionar"><span>Redimensionar</span></a></li>
+     </ul>
+
+    <div id="crop">
+    <form action="/galerias/manipular_foto/{{idObjeto}}/" method="POST">
+      <table width="800" border="1">
+        <tr>
+          <td>&nbsp;</td>
+          <td><div align="center"><b>{{foto.nome}}</b></div></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><div align="center" style="overflow: scroll;"><img src="{{MEDIA_URL}}{{foto.arquivo}}" id="cropBox"/></div></td>
+          <td><p align="center">Previa:</p>
+            <div style="width:100px; height:100px; overflow:hidden; margin-left:5px;" aling="center" > 
+              <img src="{{MEDIA_URL}}{{foto.arquivo}}" name="cropPreview" id="cropPreview"/>
+            </div>
+            <div align="center"></div></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><table width="90%" border="0">
+              <tr>
+                <td><p>Dimensões do Crop:</p>
+                  <p>Altura:
+                    <input type="textfield" id="alturaField" name="altura" readonly/>
+                  </p>
+                  <p>Largura:
+                    <input type="textfield" id="larguraField" name="largura" readonly/>
+                  </p></td>
+                <td><p>Coordenadas do Croop:</p>
+                  <p>X Inicial:
+                    <input type="textfield" id="xInicialField" size="6" name="x" />
+                    X Final:
+                    <input type="textfield" id="xFinalField" size="6" name="x2"/>
+                  </p>
+                  <p>Y Inicial:
+                    <input type="textfield" id="yInicialField" size="6" name="y"/>
+                    Y Final:
+                    <input type="textfield" id="yFinalField" size="6" name="y2"/>
+                  </p>
+                  <br />
+                  <input type="button" value="Setar Coordenadas" onClick="javascript:setarCoordenadas()"/>            </td>
+              </tr>
+            </table>
+            <p>&nbsp;</p></td>
+          <td></td>
+        </tr>
+       
+      </table>
+        <input type="submit" value="Salvar Crop" />
+     </form>
+    </div>
+    
+    
+    <div id="miniaturas">  
+      <table>
+      <tr>
+          <td colspan="3"><p>Thumbnails:</p>
+            <div align="center">{% for thumbnail in thumbnails %} <img src="{% pegar_miniatura foto thumbnail.nome %}" /> {% endfor %} </div></td>
+        </tr>
+      </table>  
+    </div>
+    
+    <div id="redimensionar">
+    <form action="/galerias/manipular_foto/redimensionar/{{idObjeto}}/" method="POST">
+      <table>
+      <tr>
+      <td colspan="3">
+         <div align="center" id="resizable" style="border-style: dashed; border-width: 2px; width: {{foto.arquivo.width}}px; height: {{foto.arquivo.height}}px;">
+            <img id="imagemRedimensionar" style="width:{{foto.arquivo.width}} px; height:{{foto.arquivo.height}} px;" src="{{MEDIA_URL}}{{foto.arquivo}}" name="cropBox2" id="cropBox2"/>
+         </div>
+      </td>
+    </tr>
+        <tr>
+          <td colspan="3"><div align="center">Altura:
+              <input type="textfield" value="{{foto.arquivo.height}}" id="alturaRedimensionar" name="alturaField" onkeyup="javascript: redimensionar($('#alturaRedimensionar').val(), $('#larguraRedimensionar').val());"/> 
+          Largura: 
+          <input type="textfield" value="{{foto.arquivo.width}}" id="larguraRedimensionar" name="larguraField" onkeyup="javascript: redimensionar($('#alturaRedimensionar').val(), $('#larguraRedimensionar').val());" />
+          </div></td>
+        </tr>
+      </table> 
+   <input type="submit" value="Redimensionar Foto" />
+     </form>    
+    </div> 
+</div>
+<a href="/admin/index_gallery/foto/{{idObjeto}}">Voltar</a>
+</body>
+</html>

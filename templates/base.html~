@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="{{pagina.descricao}}" />
+	<meta name="keywords" content="{{pagina.tags}}" />
+	<meta name="author" content="Index Comunicação Digital - www.indexvirtual.com" />
+	<meta name="reply-to" content="index@indexvirtual.com" />
+	<meta name="robots" content="index, follow" />
+	<meta name="generator" content="Tibigo 0.5a" />
+        <link rel="icon" href="{{MEDIA_URL}}img/favicon.ico" type="image/x-icon"/>
+
+
+	<link rel="shortcut icon" href="favico.ico" >
+	
+	<title>Microsol &bull; Energia Inteligente</title>
+	
+	<!-- 960.gs -->
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/960/css/960.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/960/css/reset.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/960/css/text.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/geral.css" />
+        <link rel="stylesheet" type="text/css" media="screen, projection" href="{{MEDIA_URL}}css/menu.css" />
+        <link rel="stylesheet" href="{{MEDIA_URL}}css/fancy.css" type="text/css" media="screen">
+    <!--[if IE 6]>
+        <link rel="stylesheet" href="css/ie6.css" type="text/css" media="screen" />
+    <![endif]-->
+
+    
+    <!-- jQuery -->
+    <!--<script src="{{MEDIA_URL}}js/jquery-1.2.3.min.js" type="text/javascript"></script>
+	<script src="{{MEDIA_URL}}js/jquery.dimensions.js" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/ui.mouse.js" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/ui.slider.js" type="text/javascript"></script>-->
+{% block "head" %}
+    <script src="{{MEDIA_URL}}js/jquery-1.js" type="text/javascript"></script>
+    <script src="{{MEDIA_URL}}js/jquery-ui-full-1.js" type="text/javascript"></script>
+   
+        window.onload = function () {
+            
+			var init = 0;
+			var han = Array(16, 181, 376, 571,723);
+			var sli = Array(-2, -68, -147, -201,-253);
+		 	var valor = 0;
+			var container = $('div.sliderGallery');
+            var ul = $('ul', container);
+            
+            var itemsWidth = ul.innerWidth() - container.outerWidth();
+            
+            $('.slider', container).slider({
+                min: 0,
+                max: itemsWidth,
+                handle: '.handle',
+                stop: function (event, ui) {
+                    ul.animate({'left' : ui.value * -1}, 500);
+                },
+                slide: function (event, ui) {
+                    ul.css('left', ui.value * -1);
+                }
+            });
+			$('.slider-lbl1').click(function(){
+				$('.handle').css('left','16px');
+				valor = 0;
+			});
+			$('.slider-lbl3').click(function(){
+				$('.handle').css('left','181px');
+				valor = 1;
+			});
+			$('.slider-lbl4').click(function(){
+				$('.handle').css('left','376px');
+				valor = 2;
+			});
+			$('.slider-lbl5').click(function(){
+				$('.handle').css('left','571px');
+				valor = 3;
+			});
+			$('.slider-lbl6').click(function(){
+				$('.handle').css('left','723px');
+				valor = 4;
+			});
+			$('.slider-right').click(function(){
+				valor += 1;
+				if(valor < 4 || valor >=0){
+					$('.handle').animate({'left': han[valor]+'px'}, 'slow');
+					$('.sliderGallery ul').animate({'left': sli[valor]+'px'}, 'slow');
+				}
+			});
+			$('.slider-left').click(function(){
+				valor -= 1;
+				if(valor >=0 || valor<4){
+					$('.handle').animate({'left': han[valor]+'px'}, 'slow');
+					$('.sliderGallery ul').animate({'left': sli[valor]+'px'}, 'slow');
+				}
+			});
+        };
+    </script>
+{% endblock %}
+{% block "extrahead" %}
+{% endblock %}
+	
+	<!--[if IE 6]>
+	<script src="{{MEDIA_URL}}js/DD_belatedPNG_0.0.7a-min.js"></script>
+	<script>
+		DD_belatedPNG.fix('img, #geral, #topo, #busca, #rodape, #login_home, .bg, .microsol, .banner_tematico, .inicial, .index, .marca, .btn-login, .seta');
+	</script>
+	<![endif]-->
+
+</head>
+
+<body>
+<a name="topo"></a>
+<!-- TOPO -->
+<div id="topo">
+	<div class="container_12">
+    	<div id="marcabanner" class="grid_12">
+	        <div class="grid_3 alpha"><h1><a href="/" title="Voltar para a página inicial da Microsol &bull; Energia Inteligente" class="microsol">Microsol &bull; Energia Inteligente</a></h1></div>
+    	    <div class="grid_9 omega"><a href="#" class="banner_tematico">Conheça a nova linha de produtos Microsol.</a></div>
+        </div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="nav" class="grid_12">
+            <div class="grid_10 alpha"><!-- MENU -->
+                <ul class="menu">
+                    <li><a href="/" title="Voltar para a página inicial" class="inicial">Voltar para a página inicial</a></li>
+                    <li><a href="/a_microsol/" title="A Microsol">A Microsol</a></li>
+                    <li><a href="#">Produtos<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <!--[if lte IE 6]><table><tr><td><![endif]-->
+                        <ul>
+                            <li><a href="/produtos/nobreak/" title="">Nobreaks</a></li>
+                            <li><a href="/produtos/estabilizador/" title="">Estabilizadores</a></li>
+                            <li><a href="/produtos/estabilizador_e_condicionador/" title="">Estabilizadores e Condicionadores</a></li>
+                            <li><a href="/produtos/modulo_isolador/" title="">Módulos Isoladores</a></li>
+                            <li><a href="/produtos/produtos_sob_encomenda/" title="">Sob Encomenda</a></li>
+                            <li><a href="/produtos/fontes_para_notebook/" title="">Fontes para Notebook</a></li>
+                            <li><a href="/produtos/produtos_descontinuados/" title="">Descontinuados</a></li>
+                            <li><a href="/produtos/acessorios/" title="">Acessórios</a></li>
+                            <li><a href="/produtos/softwares/" title="">Softwares</a></li>
+                        </ul>
+                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    </li>
+                    <li><a href="/catalogos/" title="Catálogo">Catálogo</a></li>
+                    <li><a href="/suporte/" title="Suporte">Suporte</a></li>
+                    <li><a href="/onde_encontrar/" title="Onde encontrar">Onde encontrar</a></li>
+                    <li><a href="/midia/" title="Mídia">Mídia</a></li>
+                    <li><a href="/rh/" title="Oportunidades">Oportunidades</a></li>
+                    <li><a href="/fale_conosco/" title="Fale Conosco">Fale Conosco</a></li>
+                </ul>
+            </div>
+            <div class="grid_2 omega"><!-- BUSCA -->
+                <form id="busca">
+                    <fieldset>
+                        <legend>Busca no site</legend>
+                        <label>Buscar</label>
+                        <input class="ipt_busca" type="text" value="Digite sua busca" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+</div>
+
+<!-- MEIO -->
+<div id="meio">
+	<div class="container_12">
+            {% block "conteudo" %}
+            {% endblock %}
+<div class="clear">&nbsp;</div>
+    </div>
+</div>
+<div class="clear">&nbsp;</div>
+
+<!-- RODAPE -->
+<div id="rodape">
+	<div class="container_12">
+    	<div id="acesso" class="grid_12">
+            <div class="grid_2 saibaquemsomos alpha">
+                <h2>Saiba quem somos</h2>
+                <ul>
+                    <li><a href="/a_microsol/a_empresa/" title="Sobre a Microsol">Sobre a Microsol</a></li>
+                    <li><a href="/a_microsol/a_empresa/" title="Matriz e Filiais">Matriz e Filiais</a></li>
+                    <li><a href="/rh/" title="Trabalhe conosco">Trabalhe conosco</a></li>
+                    <li><a href="/a_microsol/qualidade_e_premios/" title="Qualidade e Prêmios">Qualidade e Prêmios</a></li>
+                    <li><a href="/fale_conosco/" title="Fale Conosco">Fale Conosco</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4 nossosprodutos">
+                <h2>Nossos Produtos</h2>
+                <ul>
+                    <li><a href="/produtos/nobreak/" title="Nobreaks">Nobreaks</a></li>
+                    <li><a href="/produtos/estabilizador/" title="Estabilizadores">Estabilizadores</a></li>
+                    <li><a href="/produtos/estabilizador_e_condicionador/" title="">Estabilizadores e Condicionadores</a></li>
+                    <li><a href="/produtos/modulo_isolador/" title="Módulos Isoladores">Módulos Isoladores</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/produtos/fontes_para_notebook/" title="Fontes para notebook">Fontes para notebook</a></li>
+                    <li><a href="/produtos/acessorios/" title="Acessórios">Acessórios</a></li>
+                    <li><a href="/produtos/softwares/" title="Softwares">Softwares</a></li>
+                    <li><a href="/produtos/produtos_descontinuados/" title="Produtos descontinuados">Produtos descontinuados</a></li>
+                    <li><a href="/produtos/produtos_sob_encomenda/" title="Produtos sob encomenda">Produtos sob encomenda</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_2 ondeencontrar">
+                <h2>Onde nos encontrar</h2>
+                <ul>
+                    <li><a href="/onde_encontrar/revendas" title="Revendas">Revendas</a></li>
+                    <li><a href="/onde_encontrar/lojas_online" title="Lojas Online">Lojas Online</a></li>
+                    <li><a href="/onde_encontrar/assistencia_tecnica" title="Assistências Técnicas">Assistências Técnicas</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_2 acessorapido">
+                <h2>Acesso Rápido e Suporte</h2>
+                <ul>
+                    <li><a href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+                    <li><a href="/suporte/manuais/" title="Manuais">Manuais</a></li>
+                    <li><a href="/suporte/perguntas_frequentes/" title="Perguntas Frequentes">Perguntas Frequentes</a></li>
+                    <li><a href="/produtos/softwares/" title="SGM">SGM</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+</div>
+
+<div id="direitos">
+	<div class="container_12">
+        <div class="grid_11">
+            <ul>
+                <li class="datasite"><span>© 2009 Microsol Tecnologias S/A</span></li>
+                <li class="termosdeuso"><a href="#" title="Termos de uso e Política de privacidade">Termos de uso e Política de privacidade</a></li>
+                <li class="mapadosite"><a href="#" title="Mapa do Site">Mapa do Site</a></li>
+                <li class="assinenosso"><a href="/midia/informativo/" title="Assine nosso Informativo">Assine nosso Informativo</a></li>
+            </ul>
+        </div>
+        <div class="grid_1"><h2><a href="#" title="Desenvolvido pela Index Comunicação Digital" class="index">Desenvolvido pela Index Comunicação Digital</a></h2></div>
+        <div class="clear">&nbsp;</div>
+    </div>
+</div>
+<script type="text/javascript">
+    try {
+	var pageTracker = _gat._getTracker({{config.google_analytics_user}});
+	pageTracker._trackPageview();
+    } catch(err) {}
+</script>
+</body>
+</html>

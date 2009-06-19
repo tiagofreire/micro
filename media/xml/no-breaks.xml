@@ -1,0 +1,41 @@
+
+            <FlippingBook>
+                <width>750</width>
+                <height>560</height>
+        
+                <scaleContent>true</scaleContent>
+                <firstPage>0</firstPage>
+                <alwaysOpened> false </alwaysOpened>
+                <autoFlip> 50 </autoFlip>
+                <flipOnClick> false </flipOnClick>
+        
+                <shadowsDepth> 1 </shadowsDepth>
+        
+                <moveSpeed> 2 </moveSpeed>
+                <closeSpeed> 3 </closeSpeed>
+                <gotoSpeed> 3 </gotoSpeed>
+        
+                <flipSound> mp3/01.mp3</flipSound>
+                <pageBack> 0xFFFFFF </pageBack>
+        
+                <loadOnDemand> true </loadOnDemand>
+                <cachePages> true </cachePages>
+                <usePreloader> true </usePreloader>
+        
+                <pages>
+                         <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/00___.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/01___.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/02__.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/03__.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/04_.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/05_.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/06_.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/07_.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/08_.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/09.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/10.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/11.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/12.jpg</page> 
+                 <page>http://media.indexvirtual.com/microsol/img/index_gallery/fotos/13.jpg</page> 
+    </pages>
+        </FlippingBook>

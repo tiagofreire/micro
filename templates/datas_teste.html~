@@ -1,0 +1,7 @@
+<html>
+    <head>
+    </head>
+    <body>
+        {% filtrar_por_data noticias 'data' %}
+    </body>
+</html>

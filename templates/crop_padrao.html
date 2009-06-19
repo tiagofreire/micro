@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Cropar Imagem</title>
+<link rel="stylesheet" href="{{MEDIA_URL}}css/jcrop.css" type="text/css" />
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}js/jcrop.js" ></script>
+    <script type="text/javascript">	
+		
+		$(window).load(function(){
+			$('#cropBox').Jcrop({
+				onSelect: mostrarDimensoesCrop,
+				onChange: mostrarDimensoesCrop
+				});				
+		});
+			  
+		function mostrarDimensoesCrop(c) {
+		   $('#alturaField').val(c.h);
+		   $('#larguraField').val(c.w);
+		   $('#xInicialField').val(c.x);
+		   $('#xFinalField').val(c.x2);
+		   $('#yInicialField').val(c.y);
+		   $('#yFinalField').val(c.y2);
+		}
+			
+		function setarCoordenadas() {
+		   if (crop == null) {
+			  alert("Faça uma seleção inicial");
+		   }
+		   else {
+			  novaCoordenada = [$("#xInicialField").val(), $("#yInicialField").val(), $("#xFinalField").val(), $("#yFinalField").val()];
+			  crop.animateTo(novaCoordenada);
+		   }	    
+		}
+
+    </script>
+</head>
+<body>
+    <div id="tabContainer" class="Flora">
+        <div id="crop">
+        <form action="/utils/cropar_imagem/{{imagem_name}}/" method="POST">
+          <table width="800" border="1">
+            <tr>
+              <td>&nbsp;</td>
+              <td><div align="center"><b>{{foto.nome}}</b></div></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><div align="center" style="overflow: scroll;"><img src="{{imagem_src}}" id="cropBox"/></div></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><table width="90%" border="0">
+                  <tr>
+                    <td><p>Dimensões do Crop:</p>
+                      <p>Altura:
+                        <input type="textfield" id="alturaField" name="altura" readonly/>
+                      </p>
+                      <p>Largura:
+                        <input type="textfield" id="larguraField" name="largura" readonly/>
+                      </p></td>
+                    <td><p>Coordenadas do Croop:</p>
+                      <p>X Inicial:
+                        <input type="textfield" id="xInicialField" size="6" name="x" />
+                        X Final:
+                        <input type="textfield" id="xFinalField" size="6" name="x2"/>
+                      </p>
+                      <p>Y Inicial:
+                        <input type="textfield" id="yInicialField" size="6" name="y"/>
+                        Y Final:
+                        <input type="textfield" id="yFinalField" size="6" name="y2"/>
+                      </p>
+                      <br />
+                      <input type="button" value="Setar Coordenadas" onClick="javascript:setarCoordenadas()"/>            </td>
+                  </tr>
+                </table>
+                <p>&nbsp;</p></td>
+              <td></td>
+            </tr>
+           
+          </table>
+            <input name="redirect" type="hidden" value="{{post_redirect}}" />
+            <input type="submit" value="Salvar Crop" />
+         </form>
+        </div>
+    </div>
+    <a href="/admin/index_gallery/foto/{{idObjeto}}">Voltar</a>
+</body>
+</html>

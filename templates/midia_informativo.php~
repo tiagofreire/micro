@@ -1,0 +1,52 @@
+<?php include("_topo.php"); ?>
+	<div id="categoria" class="grid_12">
+        <h2>Mídia</h2>
+        <ul>
+            <li><a href="#" class="sub-ativo" title="Informativo">Informativo</a></li>
+            <li><a href="#" title="Notícias">Notícias</a></li>
+            <li><a href="#" title="Publicidade">Publicidade</a></li>
+            <li><a href="#" title="Hotsites">Hotsites</a></li>
+            <li><a href="#" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_5 alpha">
+    	<img src="img/img_dtq_int_placeholder.jpg" alt="Mídia"  />
+    </div>
+    
+    <div id="chamada" class="grid_7 omega">
+        <p>Assine nosso Informativo para receber no seu email nossas notícias e novidades sobre as linhas de produtos Microsol.</p>
+        <form id="informativo" class="informativo_int">
+            <label>Seu nome</label> <input type="text" value="Seu nome" class="ipt_informativo" />
+            <label>Seu e-mail</label> <input type="text" value="Seu e-mail" class="ipt_informativo" />
+            <a href="#" title="Enviar" class="btn btn-enviar fr">Enviar</a>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="outros-links" class="grid_12">
+    	<h2>Últimas Notícias</h2>
+        <!-- LISTA COM AS 5 ULTIMAS NOTÍCIAS -->
+        <div class="grid_6 alpha">
+            <ul>
+                <li><a href="#" title="">Microsol vence prêmio de responsabilidade social.</a></li>
+                <li><a href="#" title="">Notepower é destaque na Revista INFO.</a></li>
+                <li><a href="#" title="">Nobreaks aguentam quanto tempo sem energia?</a></li>
+                <li><a href="#" title="">Eu preciso ter estabilizador para Notebook?</a></li>
+                <li><a href="#" title="">O Módulo Isolador resolve todos os meus problemas de aterramento?</a></li>
+            </ul>
+        </div>
+        
+        <!-- LISTA COM AS OUTRAS 5 ULTIMAS NOTÍCIAS COM OFFSET 5 -->
+        <div class="grid_6 omega">
+            <ul>
+                <li><a href="#" title="">Os produtos Microsol são Bivolt?</a></li>
+                <li><a href="#" title="">Para que serve um módulo isolador?</a></li>
+                <li><a href="#" title="">Nobreaks aguentam quanto tempo sem energia?</a></li>
+                <li><a href="#" title="">Eu preciso ter estabilizador para Notebook?</a></li>
+                <li><a href="#" title="">O Módulo Isolador resolve todos os meus problemas de aterramento?</a></li>
+            </ul>
+        </div>
+    </div>
+<?php include("_rodape.php"); ?>

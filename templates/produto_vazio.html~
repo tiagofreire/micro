@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript">
+        function exibir_conteudo(id_conteudo, id_item){
+            $('.sub-ativo').removeClass('sub-ativo');
+            $('#' + id_item).addClass('sub-ativo');
+            $("#id_conteudo_produto").fadeOut('slow', function(){
+                var html = "";
+                html = $("#" + id_conteudo).html();
+                $("#id_conteudo_produto").html(html);
+                $("#id_conteudo_produto").fadeIn('slow');
+            });
+        }
+    </script>  
+{% endblock %}
+{% block "conteudo" %}
+<div id="id_container">
+    <div id="categoria" class="grid_12">
+        <h2>{{categoria.nome}}</h2>
+        <ul>
+            <li><a id="item_nome_produto" href="javascript: exibir_conteudo('id_descricao', 'item_nome_produto');" title="">{{produto.nome|safe}}</a></li>
+            {% if produto.funcoes_e_beneficios %}<li><a id="item_funcoes" href="javascript: exibir_conteudo('id_funcoes_e_beneficios', 'item_funcoes');" title="">Funções e Benefícios</a></li>{% endif %}
+            {% if produto.modelos.all %}<li><a id="item_modelos" href="javascript: exibir_conteudo('id_modelos_disponiveis', 'item_modelos');" title="">Modelos Disponíveis</a></li>{% endif %}
+            {% if produto_cor %}<li><a id="item_cores" href="javascript: exibir_conteudo('id_cores', 'item_cores');" title="">Cores</a></li> {% endif %}
+            {% if produto.modelos.all %}<li><a id="item_aplicacoes" href="javascript: exibir_conteudo('id_aplicacoes', 'item_aplicacoes');" title="" >Aplicações</a></li>{% endif %}
+            {% if produto.tour_360 %}<li><a id="item_360" href="javascript: exibir_conteudo('id_tour_360', 'item_360');" title="">Tour 360</a></li>{% endif %}
+            {% if produto.sgm %}<li><a id="item_sgm" href="javascript: exibir_conteudo('id_sgm', 'item_sgm');" title="">SGM</a></li>{% endif %} 
+            {% if produto.manual or produto.catalogo %}<li><a id="item_dados_tecnicos" href="javascript: exibir_conteudo('id_dados_tecnicos', 'item_dados_tecnicos');" title="">Dados Técnicos</a></li>{% endif %}
+            {% if produto.modulo_de_comunicacao %}<li><a id="item_modulo_comunicacao" href="javascript: exibir_conteudo('id_modulo_de_comunicacao', 'item_modulo_comunicacao');" title="">Módulo de Comunicação</a></li>{% endif %}
+            {% if produto.extra_i_nome %}<li><a id="item_extra_i_nome" href="javascript: exibir_conteudo('id_extra_i_nome', 'item_extra_i_nome');" title="">{{produto.extra_i_nome}}</a></li>{% endif %} 
+            {% if produto.extra_ii_nome %}<li><a id="item_extra_ii_nome" href="javascript: exibir_conteudo('id_extra_ii_nome', 'item_extra_ii_nome');" title="">{{produto.extra_ii_nome}}</a></li>{% endif %}
+            {% if produto.extra_iii_nome %}<li><a id="item_extra_iii_nome" href="javascript: exibir_conteudo('id_extra_iii_nome', 'item_extra_iii_nome');" title="">{{produto.extra_iii_nome}}</a></li>{% endif %}
+            {% if produto.hotsite %}<li><a id="item_hotsite" href="{{produto_destaque.hotsite}}" title="">Hotsite</a></li>{% endif %}
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_4 alpha"><img src="{{MEDIA_URL}}{{produto.imagem}}" alt="{{produto.nome}}"  /></div>
+    <div id="produto" class="grid_8 omega">
+        <div class="grid_6 prefix_1 suffix_1">
+            <h3><img src="{{MEDIA_URL}}{{produto.logo}}" alt="{{produto.nome}}" /></h3>
+            <ul>
+            {% for foto in produto.galeria.fotos.all %}
+        	<li><a href="{{MEDIA_URL}}{{foto.arquivo}}" class="fancy_trigger"><img src="{% pegar_miniatura foto 'thumbnail_produto' %}" alt="{{foto.nome}}" /></a></li>
+            {% endfor %}
+            </ul>  
+            <div id="id_conteudo_produto">
+                {{produto.descricao|safe}}
+            </div>
+        </div>
+    </div>
+
+<!-- container para informações do produto -->
+<div id="id_descricao" style="display: none;">
+    {{produto.descricao|safe}}
+</div>
+<div id="id_sgm" style="display: none;">
+    {{sgm.descricao|safe}}
+</div>
+<div id="id_funcoes_e_beneficios" style="display: none;">
+    {{produto.funcoes_e_beneficios|safe}}
+</div>
+<div id="id_extra_i_nome" style="display: none;">
+    {{produto.extra_i_texto|safe}}
+</div>
+<div id="id_extra_ii_nome" style="display: none;">
+    {{produto.extra_ii_texto|safe}}
+</div>
+<div id="id_extra_iii_nome" style="display: none;">
+    {{produto.extra_iii_texto|safe}}
+</div>
+
+<div id="id_modulo_de_comunicacao" style="display: none;">
+    {{produto.modulo_de_comunicacao|safe}}
+</div>
+<div id="id_modelos_disponiveis" style="display: none;">
+    {% for modelo in produto.modelos.all %}
+        <h4>{{modelo.nome}}</h4>
+        Potência: {{modelo.potencia|floatformat}}{{modelo.tipo_potencia}}<br />
+        Fator de Potência: {{modelo.fator_potencia}}<br />
+        Entrada: {{modelo.entrada}}<br />
+        Saida: {{modelo.saida}}<br />
+        SGM: {% if modelo.sgm %}Sim{% else %}Não {% endif %}<br />
+    {% endfor %} 
+</div>
+<div id="id_cores" style="display: none;">
+    {% for modelo in produto.modelos.all %}
+        {% if modelo.cores.all %}
+            <h4>{{modelo.nome}}</h4>
+             <ul>
+             {% for cor in modelo.cores.all %}
+                 <li>{{cor.nome}}</li>
+             {% endfor %}       
+             </ul>
+        {% endif %}
+    {% endfor %} 
+</div>
+<div id="id_aplicacoes" style="display: none;">
+     {% for modelo in produto.modelos.all %}
+        <h4>{{modelo.nome}}</h4>
+        <ul class="aplicacao">
+            {% for aplicacao in modelo.aplicacoes.all %}
+                <li><img src="{{aplicacao.padrao_thumbnail}}" /></li>
+            {% endfor %}
+        </ul>
+    {% endfor %} 
+</div>
+<div id="id_dados_tecnicos" style="display: none;">
+    {% if produto.manual %}
+         <a href="{{MEDIA_URL}}{{produto_destaque.manual}}">Manual</a>
+    {% endif %}
+    {% if produto.catalogo %}
+         <a href="{{MEDIA_URL}}{{produto_destaque.catalogo}}">Catalogo</a>
+    {% endif %}
+    {% if produto.sgm %}
+         <a href="#">Manual SGM GERAL</a>
+         <a href="#">SGM WIN 95</a>
+         <a href="#">SGM WIN 98</a>
+         <a href="#">SGM WIN 2000</a>
+         <a href="#">SGM WIN XP</a>
+         <a href="#">SGM WIN Linux</a>  
+    {% endif %}
+</div>
+<!-- Fim dos containers -->
+
+</div>
+    <div class="clear">&nbsp;</div>
+    {% for caracteristica in produto.caracteristicas.all %}
+        <div id="vantagem" class="grid_3">
+            <a href="#" title="{{caracteristica.titulo}}">
+                <img src="{{MEDIA_URL}}{{caracteristica.imagem}}" alt="{{caracteristica.titulo}}" />
+                <h4>{{caracteristica.titulo}}</h4>
+                <p>{{caracteristica.texto|safe}}</p>
+            </a>
+       </div>
+    {% endfor %}
+    <div class="clear">&nbsp;</div>
+
+    {% ifnotequal categoria.nome_slug "fontes_para_notebook" %}
+    <div id="outros" class="grid_12">
+    	<h2>Outros {{categoria.nome}}</h2>
+        <ul>
+            {% for produto in produtos %}
+                <li><a href="/produtos/{{categoria.nome_slug}}/{{produto.nome_slug}}/" title="{{produto.nome}}"><img src="{{MEDIA_URL}}{{produto.miniatura}}" alt="{{produto.nome}}" /></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endifnotequal %}
+
+
+{% endblock %}

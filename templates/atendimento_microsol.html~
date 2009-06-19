@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Index Comunicação Digital - www.indexvirtual.com" />
+    <meta name="robots" content="noindex, nofollow">
+    <title>Microsol &bull; Energia Inteligente - Atendimento on site</title>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/atendimento_microsol/reset.css" media="all" />
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/atendimento_microsol/960.css" media="screen, projection" />
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/atendimento_microsol/style.css" media="screen, projection" />
+    <script src="{{MEDIA_URL}}js/jquery.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/validacao.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/jquery_form.js" type="text/javascript" ></script>
+    <script src="{{MEDIA_URL}}js/jquery-meio-mask.js" type="text/javascript" ></script>
+    <script type="text/javascript" >
+    </script>
+    <!--[if IE 6]>
+	<script src="js/DD_belatedPNG_0.0.7a-min.js"></script>
+	<script>
+		DD_belatedPNG.fix('a');
+	</script>
+	<![endif]-->
+
+    <script type="text/javascript">
+        function enviar_chamada(){
+            var erros = 0;
+            $(".validar").attr("class", ""); 
+            $(".validarcomposto").attr("class", "");
+
+            if (validarNome($("#id_nome").val()) == false){
+                erros += 1;
+                $("#span_nome").attr("class", "validar"); 
+            }
+            if ($("#id_orgaosolicitante").val() == ""){
+                erros += 1;
+                $("#span_orgaosolicitante").attr("class", "validar");
+            }
+            if ($("#id_endereco").val() == ""){
+                erros += 1;
+                $("#span_endereco").attr("class", "validar");
+            }
+            if ($("#id_complemento").val() == ""){
+                erros += 1;
+                $("#span_complemento").attr("class", "validar");
+            }  
+            if ($("#id_bairro").val() == ""){
+                erros += 1;
+                $("#span_bairro").attr("class", "validar");
+            }
+            if ($("#id_cidade").val() == ""){
+                erros += 1;
+                $("#span_cidade").attr("class", "validar");
+            }   
+            if ($("#id_ntombamento").val() == ""){
+                erros += 1;
+                $("#span_ntombamento").attr("class", "validar");
+            } 
+            if ($("#id_setor").val() == ""){
+                erros += 1;
+                $("#span_setor").attr("class", "validar");
+            } 
+            if ($("#id_ordemconsoft").val() == ""){
+                erros += 1;
+                $("#span_ordemconsoft").attr("class", "validar");
+            } 
+            if ($("#id_numero").val() == ""){
+                erros += 1;
+                $("#span_numero").attr("class", "validar");
+            } 
+            if ($("#id_cep_1").val() == ""){
+                erros += 1;
+                $("#span_cep_1").attr("class", "validarcomposto");
+            } 
+            if ($("#id_cep_2").val() == ""){
+                erros += 1;
+                $("#span_cep_2").attr("class", "validarcomposto");
+            }
+            if ($("#id_estado").val() == "Selecione"){
+                erros += 1;
+                $("#span_estado").attr("class", "validar");
+            }  
+            if ($("#id_ddd").val() == ""){
+                erros += 1;
+                $("#span_ddd").attr("class", "validarcomposto");
+            }
+            if ($("#id_fone").val() == ""){
+                erros += 1;
+                $("#span_fone").attr("class", "validarcomposto");
+            }
+            if ($("#id_ramal").val() == ""){
+                erros += 1;
+                $("#span_ramal").attr("class", "validarcomposto");
+            }
+            if (validarEmail($("#id_email").val()) == false){
+                erros += 1;
+                $("#span_email").attr("class", "validar");
+            }
+            if ($("#id_modelo").val() == ""){
+                erros += 1;
+                $("#span_modelo").attr("class", "validar");
+            }
+            if ($("#id_potencia").val() == ""){
+                erros += 1;
+                $("#span_potencia").attr("class", "validar");
+            }
+            if ($("#id_numerodeserie").val() == ""){
+                erros += 1;
+                $("#span_numerodeserie").attr("class", "validar");
+            }
+            if ($("#id_nserienotafiscal").val() == ""){
+                erros += 1;
+                $("#span_nserienotafiscal").attr("class", "validar");
+            }
+            if ($("#id_descricao").val() == ""){
+                erros += 1;
+                $("#span_descricao").attr("class", "validar");
+            }                
+
+            if (erros == 0){
+                $("#form").ajaxSubmit({
+                    success: function(responseText, statusText){
+                        if(responseText == "sucesso"){
+                            $("#aviso_envio").attr("class", "success");
+                            $("#aviso_envio").html("Sua solicitação foi enviada com sucesso!");    
+                            $("input").val("");
+                        }
+                        else {
+                            $("#aviso_envio").attr("class", "error");
+                            $("#aviso_envio").html("Ops! Houve problemas no envio. Tente novamente!"); 
+                        }    
+                    }
+                });
+            } else {
+                $("#aviso_envio").attr("class", "notice");
+                $("#aviso_envio").html("Atenção! Verifique os campos em destaque e envie novamente");
+            } 
+            return false
+        }
+    </script>
+</head>
+
+<body>
+	<div class="container_12">
+    	<div id="topo" class="grid_3 push_2"><h2 class="microsol"><a href="#" title="Microsol &amp;bull; Energia Inteligente - Atendimento on site">Microsol &amp;bull; Energia Inteligente - Atendimento on site</a></h2></div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="meio" class="grid_8 push_2">
+        	<h1>{{pagina.titulo}}</h1>
+                {{pagina.texto|safe}}
+            
+            <form method="POST" action="/atendimento_microsol/" id="form" onsubmit="javascript: return enviar_chamada();">
+            	<fieldset>
+                	<legend>Dados do contato</legend>
+                    <div class="grid_4 alpha esquerda">
+                    	<label>Nome</label>
+                        <span id="span_nome"><input type="text" name="nome" id="id_nome" class="ipt-nome" /></span>
+                        
+                    	<label>Orgão solicitante</label>
+                        <span id="span_orgaosolicitante"><input type="text" name="orgao_solicitante" id="id_orgaosolicitante" class="ipt-orgao" /></span>
+                        
+                    	<label>Endereço</label>
+                        <span id="span_endereco"><input type="text" name="endereco" id="id_endereco" class="ipt-endereco" /></span>
+                        
+                    	<label>Complemento</label>
+                        <span id="span_complemento"><input type="text" name="complemento" id="id_complemento" class="ipt-complemento" /></span>
+                        
+                    	<label>Bairro</label>
+                        <span id="span_bairro"><input type="text" name="bairro" id="id_bairro" class="ipt-bairro" /></span>
+                        
+                    	<label>Cidade</label>
+                        <span id="span_cidade"><input type="text" name="cidade" id="id_cidade" class="ipt-cidade" /></span>
+                        
+                    	<label>Número de tombamento</label>
+                        <span id="span_ntombamento"><input type="text" name="numero_de_tombamento" id="id_ntombamento" class="ipt-ntombamento" /></span>
+                    </div>
+                    <div class="grid_4 omega direita">
+                    	<label>Setor</label>
+                        <span id="span_setor"><input type="text" name="setor" id="id_setor" class="ipt-setor" /></span>
+                        
+                    	<label>Ordem Consoft <em>(específico para o TJ-SP)</em></label>
+                        <span id="span_ordemconsoft"><input type="text" name="ordem_consoft" id="id_ordemconsoft" class="ipt-ordemconsoft" /></span>
+                        
+                    	<label>Número</label>
+                        <span id="span_numero"><input type="text" name="numero" id="id_numero" class="ipt-numero" /></span>
+                        
+                    	<label>CEP</label>
+                        <span class="composto" id="span_cep_1"><input type="text" name="cep_1" id="id_cep_1" class="ipt-cep01" /></span>
+                        <span class="composto" id="span_cep_2"><input type="text" name="cep_2" id="id_cep_2" class="ipt-cep02" /></span>
+                        <div class="clear">&nbsp;</div>
+                        
+                    	<label>Estado</label>
+                        <span id="span_estado">
+                            <select name="estado" id="id_estado">
+                                <option value="Selecione">Selecione</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AM">AM</option>
+                                <option value="AP">AP</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MG">MG</option>
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="PR">PR</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="RS">RS</option>
+                                <option value="SC">SC</option>
+                                <option value="SE">SE</option>
+                                <option value="SP">SP</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </span>
+                        <div class="clear">&nbsp;</div>
+                        
+                    	<label>Telefone <em>(DDD Telefone Ramal)</em></label>
+                        <span class="composto" id="span_ddd"><input type="text" name="ddd" id="id_ddd" class="ipt-ddd" /></span>
+                        <span class="composto" id="span_fone"><input type="text" name="fone" id="id_fone" class="ipt-fone" /></span>
+                        <span class="composto" id="span_ramal"><input type="text" name="ramal" id="id_ramal" class="ipt-ramal" /></span>
+                        <div class="clear">&nbsp;</div>
+                        
+                    	<label>E-mail</label>
+                        <span id="span_email"><input type="text" name="email" id="id_email" class="ipt-email" /></span>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                </fieldset>
+                
+                <fieldset>
+                	<legend>Dados do equipamento</legend>
+                    <div class="grid_4 alpha esquerda">
+                    	<label>Modelo do equipamento</label>
+                        <span id="span_modelo"><input type="text" name="modelo_equipamento" id="id_modelo" class="ipt-modelo" /></span>
+                        
+                    	<label>Potência</label>
+                        <span id="span_potencia"><input type="text" name="potencia" id="id_potencia" class="ipt-potencia" /></span>
+                    </div>
+                    <div class="grid_4 omega direita">
+                    	<label>Número de série do equipamento</label>
+                        <span id="span_numerodeserie"><input type="text" name="numero_de_serie" id="id_numerodeserie" class="ipt-numerodeserie" /></span>
+                        
+                    	<label>N&ordm; de série da Nota fiscal</label>
+                        <span id="span_nserienotafiscal"><input type="text" name="numero_nota_fiscal" id="id_nserienotafiscal" class="ipt-nserienotafiscal" /></span>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    <label>Descrição do problema</label>
+                    <span id="span_descricao"><textarea name="descricao_problema" id="id_descricao" ></textarea></span>
+                    
+                    <div class="grid_6 alpha">
+                    	<!--<p class="notice">Atenção! Verifique os campos em destaque e envie novamente<p>-->
+                    	<!--<p class="success" id="aviso_envio">Sua solicitação foi enviada com sucesso!<p>-->
+                        <p id="aviso_envio"></p> 
+                    	<!--<p class="error">Ops! Houve problemas no envio. Tente novamente!<p>-->
+                    </div>
+                    <div class="grid_2 omega"><button>Enviar</button></div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="clear">&nbsp;</div>
+        
+        <div id="rodape" class="grid_8 push_2">
+            <div class="grid_2 alpha"><h2><a href="#" title="Microsol &amp;bull; Energia Inteligente - Atendimento on site">Microsol &amp;bull; Energia Inteligente - Atendimento on site</a></h2></div>
+            <div class="grid_6 omega"><p>© 2009 Microsol Tecnologias S/A<br />Um e-mail de confirmação será enviado após o envio de sua mensagem.<br />Verifique em sua caixa de emails se o envio foi efetuado. Caso seja necessário, entre em contato através de sam@microsol.com.br</p></div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+</body>
+</html>

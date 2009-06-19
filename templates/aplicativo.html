@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" >
+         function filtrar_produtos(potencia, delimitador){
+             $.ajax({
+                 url: "http://micro.indexvirtual.com/microsol_e_voce/aplicativo/"+ potencia +"/"+ delimitador +"/",
+                 type: "GET",
+                 async: false,
+                 success: function(responseText, responseStatus){
+                     alert(responseText);
+                 }
+             });
+         }
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+    <a href="javascript: filtrar_produtos(50, 250); void(0);">Televisão</a>
+{% endblock %}

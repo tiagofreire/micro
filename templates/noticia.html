@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Mídia</h2>
+        <ul> 
+            <li><a href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a class="sub-ativo" href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="noticia" class="grid_12">
+        <div class="data">
+            <span class="dia">{{noticia.data|date:"d"}}</span>
+            <span class="mes">{{noticia.data|date:"M"}}</span>
+            <span class="ano">{{noticia.data|date:"Y"}}</span>
+		</div>
+		<h3>{{noticia.titulo}}</h3>
+        <div class="clear">&nbsp;</div>
+        {% if noticia.imagem %}
+            <img src="{{MEDIA_URL}}{{noticia.imagem}}" width="309" height="232" alt="{{noticia.titulo}}" />
+        {% endif %}
+        {{noticia.texto|safe}}
+	</div>
+    <div class="clear">&nbsp;</div>
+    
+    <div id="outros-links" class="grid_12">
+    	<h2>Últimas Notícias</h2>
+        <!-- LISTA COM AS 5 ULTIMAS NOTÍCIAS -->
+       <div class="grid_6 alpha">
+            <ul>
+               {% for noticia in noticias|slice:":5" %}
+                   <li><a href="/midia/noticia/{{noticia.titulo_slug}}/" title="{{noticia.titulo}}">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- LISTA COM AS OUTRAS 5 ULTIMAS NOTÍCIAS COM OFFSET 5 -->
+        <div class="grid_6 omega">
+            <ul>
+                {% for noticia in noticias|slice:"5:10" %}
+                   <li><a href="/midia/noticia/{{noticia.titulo_slug}}/" title="{{noticia.titulo}}">{{noticia.titulo}}</a></li>
+               {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

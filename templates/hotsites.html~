@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>{{pagina.titulo}}</h2>
+        <ul>
+            <li><a href="/midia/informativo/" title="Informativo">Informativo</a></li>
+            <li><a href="/midia/noticias/1/" title="Notícias">Notícias</a></li>
+            <li><a href="/midia/publicidade/" title="Publicidade">Publicidade</a></li>
+            <li><a class="sub-ativo" href="/midia/hotsites/" title="Hotsites">Hotsites</a></li>
+            <li><a href="/midia/manual_da_marca/" title="Manual da Marca">Manual da Marca</a></li>
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    {% for hotsite in hotsites %}
+    <div id="hotsites" class="grid_12">
+    	<div class="grid_5 alpha"><a href="{{hotsite.url}}" title="Acesse o hotsite do {{hotsite.titulo}}" target="_blank"><img src="{{hotsite.padrao_thumbnail}}" width="378" height="182" alt="Hotsite {{hotsite.titulo}}" /></a></div>
+        <div class="grid_7 omega">
+        	<h3>{{hotsite.titulo}}</h3>
+            {{hotsite.texto|safe}}
+            <p>Acesse: <a href="{{hotsite.url}}" title="Acesse o hotsite do {{hotsite.titulo}}" target="_blank">{{hotsite.titulo}}</a></p>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    {% endfor %}
+{% endblock %}

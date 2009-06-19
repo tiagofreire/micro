@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* remove all the bullets, borders and padding from the default list styling */
+ul.menu { height:39px; list-style-type:none; margin:0; padding:0; }
+
+/* style the sub-level lists */
+ul.menu ul { width:150px; z-index:666; }
+
+/* float the top list items to make it horizontal and a relative positon so that you can control the dropdown menu positon */
+ul.menu li { float:left; height:30px; }
+
+/* style the sub level list items */
+ul.menu ul li { display:block; height:auto; position:relative; width:12em; }
+
+/* style the links for the top level */
+.menu a,
+.menu a:visited       { color:#FFF; display:block; float:left; font:14px "Myriad", "Trebuchet MS", Helvetica, Arial, sans-serif; padding:7px 10px 14px 10px; text-decoration:none;}
+.menu a.inicial       { background:url(../img/menu_home.png) no-repeat 10px 8px; height:18px; overflow:hidden; text-indent:-666666px; width:17px; }
+.menu a.inicial:hover { background:#910000 url(../img/menu_home.png) no-repeat 10px 8px; }
+
+
+/* style the sub level links */
+ul.menu ul a,
+ul.menu ul a:visited        { background:#535353; border-bottom:1px solid #666; border-left:3px solid #666; border-right:3px solid #666; color:#FFF; display:block; height:100%; padding:0.5em 1em; width:16em; }
+ul.menu table ul a,
+ul.menu table ul a:visited  { width:18em; w\idth:16em; }
+
+
+/* style the table so that it takes no part in the layout - required for IE to work */
+.menu table              { font-size:1em; left:0; position:absolute; top:0; z-index:-1; }
+ul.menu ul table         { lef\t:-1px; }
+ul.menu ul table ul.left { margin-lef\t:2px; }
+
+.menu li:hover       { position:relative; }
+* html .menu a:hover { position:relative; }
+
+/* style the third level background */
+ul.menu ul ul a,
+ul.menu ul ul a:visited { background:#ccc; }
+
+/* style the fourth level background */
+ul.menu ul ul ul a,
+ul.menu ul ul ul a:visited { background:#ddd; }
+
+/* style the sub level 1 background */
+ul.menu :hover a.sub1 { background:#ccc; }
+
+/* style the sub level 2 background */
+ul.menu ul :hover a.sub2 { background:#ddd; }
+
+/* style the level hovers */
+/* first */
+.menu a:hover    { background:#910000; }
+.menu :hover > a { background:#910000; }
+/* second */
+ul.menu ul a:hover    { background:#494949; border-left:3px solid #494949; border-right:3px solid #494949; color:#FFF; }
+ul.menu ul :hover > a { background:#494949; color:#FFF; }
+/* third */
+ul.menu ul ul a:hover    { background:#ddd; }
+ul.menu ul ul :hover > a { background:#ddd; }
+/* fourth */
+ul.menu ul ul ul a:hover { background:#eee; }
+
+
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+ul.menu ul { position:absolute; height:0; left:0; top:39px; visibility:hidden; width:14em; }
+/* position the third level flyout menu */
+ul.menu ul ul { left:14em; top:0; width:14em; }
+/* position the third level flyout menu for a left flyout */
+ul.menu ul ul.left { left:-14em; }
+
+/* make the second level visible when hover on first level list OR link */
+ul.menu li:hover ul,
+ul.menu a:hover ul { border-bottom:2px solid #666; height:auto; visibility:visible; }
+
+/* keep the third level hidden when you hover on first level list OR link */
+ul.menu :hover ul ul { visibility:hidden; }
+
+/* keep the fourth level hidden when you hover on second level list OR link */
+ul.menu :hover ul :hover ul ul { visibility:hidden; }
+
+/* make the third level visible when you hover over second level list OR link */
+ul.menu :hover ul :hover ul { visibility:visible; }
+
+/* make the fourth level visible when you hover over third level list OR link */
+ul.menu :hover ul :hover ul :hover ul { visibility:visible; }

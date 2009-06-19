@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script type="text/javascript" src="{{MEDIA_URL}}js/cidade_estados.js" ></script>
+    <script type="text/javascript">
+        window.onload = function() {
+new dgCidadesEstados(document.getElementById('estado'), document.getElementById('cidade'), true);
+}
+    </script>
+{% endblock %}
+{% block "conteudo" %}
+	<div id="categoria" class="grid_12">
+        <h2>Oportunidades</h2>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div id="rh" class="grid_12">
+    	{{pagina.conteudo}}
+        {% if cadastrado %}
+            Cadastro efetuado com sucesso.
+        {% endif %}
+        <form action="." method="POST" name="form_rh" id="id_form_rh">
+        	<fieldset>
+                <legend>Contato</legend>
+                
+                <div class="grid_6 alpha">
+                    <label>Nome</label>
+                    <input type="text" id="id_nome" name="nome" class="ipt_nomerh" tabindex="1" value="{{curriculo.nome}}"/>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_4 alpha">
+                        <label>E-mail</label>
+                        <input type="text" id="id_email" name="email" class="ipt_email" tabindex="2" value="{{curriculo.email}}"/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                    	<label>Sexo</label>
+                        <select tabindex="3" id="id_sexo" name="sexo" >
+                            <option>Selecione</option>
+                            <option value="Masculino" {% ifequal curriculo.sexo "Masculino" %}selected{% endifequal %}>Masculino</option>
+                            <option value="Feminino" {% ifequal curriculo.sexo "Feminino" %}selected{% endifequal %}>Feminino</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Data de Nascimento</label>
+                        <input type="text" class="ipt_dia" tabindex="4" id="id_dia" name="dia" value='{{curriculo.nascimento|date:"d"}}'/>
+                        <input type="text" class="ipt_mes" tabindex="5" id="id_mes" name="mes" value='{{curriculo.nascimento|date:"m"}}'/>
+                        <input type="text" class="ipt_ano" tabindex="6" id="id_ano" name="ano" value='{{curriculo.nascimento|date:"Y"}}'/>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>DDD/Telefone</label>
+                        <input type="text" class="ipt_ddd" tabindex="7" id="id_ddd_telefone" name="ddd_telefone" value='{{curriculo.telefone|slice:"0:4"}}'/>
+                        <input type="text" class="ipt_fone" tabindex="8" id="id_telefone" name="telefone" value='{{curriculo.telefone|slice:"4:"}}'/>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>DDD/Celular</label>
+                        <input type="text" class="ipt_ddd" tabindex="9" id="id_ddd_celular" name="ddd_celular" value='{{curriculo.celular|slice:"0:4"}}'/>
+                        <input type="text" class="ipt_fone" tabindex="10" id="id_celular" name="celular" value='{{curriculo.celular|slice:"4:"}}'/>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Endereço</label>
+                    <input type="text" class="ipt_endereco" tabindex="11" id="id_endereco" name="endereco" value="{{curriculo.endereco}}"/>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Bairro</label>
+                        <input type="text" class="ipt_bairro" tabindex="13" id="id_bairro" name="bairro" value="{{curriculo.bairro}}"/>
+                    </div>
+                    
+                    <div class="grid_2">
+                        <label>Estado</label>
+                        <select id="estado" name="estado" tabindex="14" value="{{curriculo.estado}}">
+                            <option value="Selecione">Selecione</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid_2 omega">
+                        <label>Cidade</label>
+                        <select id="cidade" name="cidade" tabindex="15" value="{{curriculo.cidade}}">
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <div class="grid_2 alpha">
+                        <label>Área de Formação</label>
+                        <input type="text" class="ipt_area" tabindex="16" id="id_area_formacao" name="area_formacao" value="{{curriculo.area_formacao}}"/>
+                    </div>
+                    
+                    <div class="grid_4 omega"><label>Instituição</label></div>
+                    <div class="grid_2">
+                    	<input type="text" class="ipt_area" tabindex="17" id="id_instituicao" name="instituicao" value="{{curriculo.instituicao}}"/>
+                    </div>
+                    <div class="grid_2 omega">
+                        <input type="radio" class="rdo" name="concluido" id="id_concluido" tabindex="18" {% if curriculo.concluido %}checked{% endif %}/> <label for="tipo_elo" class="lbl_rdo">Concluído</label><br clear="all" />
+                        <input type="radio" class="rdo" name="em_andamento" id="id_em_andamento" tabindex="19" {% if curriculo.em_andamento %}checked{% endif %}/> <label for="tipo_rec" class="lbl_rdo">Em andamento</label><br clear="all" />
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    
+                    <label>Pós-Graduaçao</label>
+                    <input type="text" class="ipt_endereco" tabindex="20" id="id_pos_graduacao" name="pos_graduacao" value="{{curriculo.pos_graduacao}}"/>
+                    <div class="clear">&nbsp;</div>
+                </div>
+                
+                <div class="grid_6 omega">
+                    <label>Experiência Profissional</label>
+                    <textarea tabindex="21" id="id_experiencia_profissional" name="experiencia_profissional" >{{curriculo.experiencia_profissional}}</textarea>
+                    <br />
+                    
+                    <label>Conhecimentos em idiomas</label>
+                    <textarea tabindex="22" id="id_conhecimento_em_idiomas" name="conhecimento_em_idiomas">{{curriculo.conhecimento_em_idiomas}}</textarea>
+                    <br />
+                    
+                    <label>Mini-currículo</label>
+                    <textarea class="minicv" tabindex="23" id="id_minicurriculo" name="minicurriculo">{{curriculo.minicurriculo}}</textarea>
+                    <br />
+                    
+                    <input type="checkbox" class="cbx" tabindex="24" /> <label class="lbl_cbx">Desejo receber novidades da Microsol</label>
+                    {% if not user.is_authenticated %} 
+                        <div class="grid_2 alpha">
+                            <label>Área de Formação</label>
+                            <input type="text" class="ipt_area" tabindex="16" id="id_area_formacao" name="login"/>
+                        </div>
+                    
+                        <div class="grid_4 omega"><label>Instituição</label></div>
+                        <div class="grid_2">
+                    	    <input type="text" class="ipt_area" tabindex="17" id="id_instituicao" name="senha" />
+                        </div>
+                    {% endif %}
+                    <input type="hidden" name="usuario" value="{{curriculo.usuario.id}}" />
+                    <input type="hidden" name="codigo_cadastro" value="{{curriculo.codigo_cadastro}}" />
+                      
+                    <a href="javascript: $('#id_form_rh').submit(); void(0);" class="btn btn-enviar fr" title="Enviar" tabindex="25">Enviar</a>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </label>
+        </form>
+    </div>
+    <div class="clear">&nbsp;</div>
+{% endblock %}

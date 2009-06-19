@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block "extrahead" %}
+    <script language="javascript">AC_FL_RunContent = 0;</script>
+    <script src="{{MEDIA_URL}}js/AC_RunActiveContent.js" language="javascript"></script>
+{% endblock %}
+{% block "conteudo" %}
+    <div id="categoria" class="grid_12">
+        <h2>{{pagina.titulo}}</h2>
+        <ul>
+            {% for catalogo in pagina.catalogos.all %}
+                <li><a href="/suporte/manuais/" title="Manuais">{{catalo.nome|slugify}}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="clr">&nbsp;</div>
+    
+    <div class="grid_12">
+    	<script language="javascript">
+	if (AC_FL_RunContent == 0) {
+		alert("This page requires AC_RunActiveContent.js.");
+	} else {
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '750',
+			'height', '600',
+			'src', 'catalogo',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'catalogo',
+			'bgcolor', '#ffffff',
+			'name', 'catalogo',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess','sameDomain',
+			'movie', 'catalogo',
+			'FlashVars', 'imgURL=catalogo.xml',
+			'salign', ''
+			); //end AC code
+	}
+    </script>
+    <noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="750" height="600" id="catalogo" align="middle">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="FlashVars" value="imgURL=catalogo.xml" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="catalogo.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="catalogo.swf" quality="high" bgcolor="#ffffff" width="750" height="600" name="catalogo" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+    </noscript>
+    </div>
+    
+    <div class="clear">&nbsp;</div>
+    
+    
+{% endblock %}
