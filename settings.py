@@ -4,6 +4,10 @@ import os.path
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 ############
+###########
+#teste
+#
+##########
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
