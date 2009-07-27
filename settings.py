@@ -3,7 +3,7 @@ import os.path
 #testesteste
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+############
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
