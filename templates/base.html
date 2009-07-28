@@ -50,12 +50,19 @@
 		 	var valor = 0;
 			var container = $('div.sliderGallery');
             var ul = $('ul', container);
-            
+			var TA = 15;
+			
+			var fonteNotebook  = $(".fonte-notebook");
+			var estabilizador  = $(".estabilizador");
+			var modulo		   = $(".modulo");
+			var nobreak 	   = $(".nobreak");
+			var acessorios     = $(".acessorios");
+
             var itemsWidth = ul.innerWidth() - container.outerWidth();
             
             $('.slider', container).slider({
                 min: 0,
-                max: itemsWidth,
+                max: itemsWidth+30,
                 handle: '.handle',
                 stop: function (event, ui) {
                     ul.animate({'left' : ui.value * -1}, 500);
@@ -65,23 +72,49 @@
                 }
             });
 			$('.slider-lbl1').click(function(){
-				$('.handle').css('left','16px');
+				$('.handle').animate({'left':'16px'});
+				fonteNotebook.animate({'opacity': 1.0, });	
+				estabilizador.animate({'opacity': 0.3, });
+				modulo.animate({'opacity': 0.3, });	
+				nobreak.animate({'opacity': 0.3, });	
+				acessorios.animate({'opacity': 0.3, });	
 				valor = 0;
 			});
 			$('.slider-lbl3').click(function(){
-				$('.handle').css('left','181px');
+				$('.handle').animate({'left':'181px'});
+				fonteNotebook.animate({'opacity': 0.3, });	
+				estabilizador.animate({'opacity': 1.0, });
+				modulo.animate({'opacity': 0.3, });	
+				nobreak.animate({'opacity': 0.3, });	
+				acessorios.animate({'opacity': 0.3, });
 				valor = 1;
+				//alert(Hnobreak);
 			});
 			$('.slider-lbl4').click(function(){
-				$('.handle').css('left','376px');
+				$('.handle').animate({'left':'376px'});
+				fonteNotebook.animate({'opacity': 0.3, });	
+				estabilizador.animate({'opacity': 0.3, });
+				modulo.animate({'opacity': 1.0, });	
+				nobreak.animate({'opacity': 0.3, });	
+				acessorios.animate({'opacity': 0.3, });
 				valor = 2;
 			});
 			$('.slider-lbl5').click(function(){
-				$('.handle').css('left','571px');
+				$('.handle').animate({'left':'571px'});
+				fonteNotebook.animate({'opacity': 0.3, });	
+				estabilizador.animate({'opacity': 0.3, });
+				modulo.animate({'opacity': 0.3, });	
+				nobreak.animate({'opacity': 1.0, });	
+				acessorios.animate({'opacity': 0.3, });
 				valor = 3;
 			});
 			$('.slider-lbl6').click(function(){
-				$('.handle').css('left','723px');
+				$('.handle').animate({'left':'723px'});
+				fonteNotebook.animate({'opacity': 0.3, });	
+				estabilizador.animate({'opacity': 0.3, });
+				modulo.animate({'opacity': 0.3, });	
+				nobreak.animate({'opacity': 0.3, });	
+				acessorios.animate({'opacity': 1.0, });
 				valor = 4;
 			});
 			$('.slider-right').click(function(){
